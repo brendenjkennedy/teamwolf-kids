@@ -1,0 +1,8 @@
+# Old teamwolf.kids pages → the matching section of the new Cub Hub
+/letter-writing               /#letter      301
+/wolf-wise-videos             /#videos      301
+/parents                      /#parents     301
+/coloring-pages-and-puzzles   /#color       301
+/quiz                         /#play/quiz   301
+# Old coloring-page PDF links
+/_files/*                     /#color       301
