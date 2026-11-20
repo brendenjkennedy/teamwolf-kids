@@ -1520,6 +1520,69 @@ input,textarea{cursor:text!important}
 @keyframes rtpop{to{transform:translateY(-50px);opacity:0}}
 @media(max-width:900px){.rtstage{aspect-ratio:4/3}.rtrav,.rtpup{width:24%}}
 </style>
+<style id="sizes-fix">
+/* ===== tablet + phone size fixes (Nov 20) ===== */
+/* adventure tiles: keep the cut-out wolves clear of the words */
+@media (min-width:901px) and (max-width:1180px){.tiles .t-half p{max-width:min(34ch,calc(100% - 132px))}.meters{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){
+  .tiles .tile .em{width:82px;right:12px;bottom:-12px}
+  .tiles .tile:has(.em) p{max-width:calc(100% - 62px)}
+  .tiles .tile{min-height:0}
+  .tiles .tile .go{padding-top:26px}
+}
+/* tablet: use the width instead of stacking everything in one column */
+@media (min-width:601px) and (max-width:900px){
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,38%);gap:28px;align-items:center;padding-top:40px}
+  .hero .pic{position:relative;right:auto;top:auto;width:100%;max-width:300px;justify-self:end;align-self:center;order:0}
+  .hero .songbtn{bottom:-16px}
+  .wordmark .ch{font-size:clamp(76px,13vw,112px)}
+  .hero .lead{max-width:34ch}
+  .hero .btns{flex-direction:column;align-items:flex-start;gap:12px}
+  .tiles{grid-template-columns:1fr 1fr}
+  .tiles .t-half,.tiles .t-third,.tiles .t-full{grid-column:auto}
+  .mascot .split{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:34px}
+  .meet .pillars{grid-template-columns:repeat(3,1fr);gap:14px}
+  .meet .pillars>*{padding:22px 20px}
+  .shelf-stage{width:fit-content;max-width:100%}
+  .vids{grid-template-columns:1fr 1fr}
+  .vids .vid:first-child{grid-column:1/-1}
+  .livecam{grid-template-columns:220px 1fr;gap:24px;align-items:center;padding:26px}
+  .lcpic{max-width:none}
+  .pages{grid-template-columns:1fr 1fr;gap:18px}
+  .steps{grid-template-columns:repeat(3,1fr);gap:14px}
+  .step{padding:22px 20px}
+  .hcards{grid-template-columns:1fr 1fr}
+  .hbig{grid-column:1/-1}
+  .teach .tg-how{grid-template-columns:1fr 1fr}
+  .tgtable tbody{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .tgtable tr{margin-bottom:0!important}
+  .foot .wrap{grid-template-columns:1fr 1fr;gap:28px 40px}
+  .foot .wrap>div:first-child{grid-column:1/-1}
+  .hcin .hcw{left:auto;right:6%;width:40%}
+}
+/* phone */
+@media (max-width:600px){
+  .hero .pic{right:22px}
+  .howlgame .moon{width:46px;height:46px;top:12px;right:16px}
+  .rtstage{aspect-ratio:1/1}
+  .rtmsg{padding:16px}
+  .rtmsg span{font-size:15px;line-height:1.4}
+}
+@media (max-width:520px){
+  .shelf-stage{padding-right:52px;min-width:0}
+  .spines{padding:0 0 0 4px;gap:3px}
+  .spine{width:calc(var(--w)*.6)}
+  .spine .tt{font-size:calc(var(--fs)*.62)}
+  .plank{margin-right:-46px}
+  .sh-end{width:54px;right:0;bottom:22px}
+}
+@media (max-width:600px){
+  .game{padding:26px 18px}
+  .pads{gap:10px}
+  .flip button{font-size:14px;padding:13px 16px}
+}
+.tcside .trmsg{margin-top:14px}
+</style>
 </head>
 <body>
 
@@ -1705,7 +1768,7 @@ input,textarea{cursor:text!important}
         <div class="lcpic"><img class="cutw" src="a/2a4008ff2f.webp" alt=""><span class="lclive"><i></i>Live</span></div>
         <div><span class="sub">Watch real wolves live</span><h2>Wolf <span class="c-s">cams.</span></h2>
         <p>The Wolf Conservation Center in New York has live cameras in its wolf areas. Check in and you might catch the wolves eating, napping, or playing. Silas, the wolf howling on our homepage, lives there!</p>
-        <a class="btn sky" href="https://nywolf.org/meet-our-wolves/webcams/" target="_blank" rel="noopener">Watch the wolf cams ↗</a></div>
+        <a class="btn sky" href="https://nywolf.org/meet-our-wolves/webcams/" target="_blank" rel="noopener">Watch the wolf cams&nbsp;↗</a></div>
     </div>
       </div>
   </section>
@@ -1999,7 +2062,7 @@ input,textarea{cursor:text!important}
   .row .ans{display:block;font-weight:500;opacity:.75;font-size:13.5px;margin-top:3px}
 
   .foot{text-align:center;font-size:12.5px;font-weight:700;opacity:.6;margin-top:16px;letter-spacing:.1em;text-transform:uppercase}
-*,*::before,*::after{cursor:url(a/b4cc8a48c2.png) 16 6,auto!important}html,body{min-height:0!important}&lt;/style&gt;
+*,*::before,*::after{cursor:url(a/b4cc8a48c2.png) 16 6,auto!important}html,body{min-height:0!important}@media (max-width:380px){body{padding:6px}.panel{padding:16px 14px}.level{padding:12px;gap:10px}.level .chip{width:42px;height:42px;font-size:21px}.level .name{font-size:17px}.level&gt;span{min-width:0}}&lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div class=&quot;app&quot;&gt;
@@ -2591,7 +2654,7 @@ window.addEventListener(&#x27;load&#x27;, reportHeight);
         <div class="box">
           <h3 style="margin-bottom:10px">Want to do more?</h3>
           <p>The grown-up version of the Cub Hub lives at teamwolf.org: the latest on wolves and the actions that matter right now.</p>
-          <a class="btn" href="https://www.teamwolf.org" data-gate>Visit teamwolf.org ↗</a>
+          <a class="btn" href="https://www.teamwolf.org" data-gate>Visit teamwolf.org&nbsp;↗</a>
         </div>
         <div class="box" style="background:var(--sky-lt)">
           <h3 style="margin-bottom:10px">Get in touch</h3>
@@ -2647,7 +2710,7 @@ window.addEventListener(&#x27;load&#x27;, reportHeight);
         <div><b>We bring people together</b><p>Conservation groups, ranchers, hunters, teachers, and scientists who agree on one thing: wolves belong here.</p></div>
       </div>
       <p class="who">Team Wolf was co-founded by Leslie Kim Williams and Samantha Attwood. Our science lead is Dr. Peter Kareiva.</p>
-      <a class="btn" href="https://www.teamwolf.org" data-gate>Visit teamwolf.org ↗</a>
+      <a class="btn" href="https://www.teamwolf.org" data-gate>Visit teamwolf.org&nbsp;↗</a>
     </div>
   </section>
 </div>
