@@ -1585,6 +1585,13 @@ input,textarea{cursor:text!important}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-08Q08PX2ST"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-08Q08PX2ST',{allow_google_signals:false,allow_ad_personalization_signals:false});</script>
+<style id="silas-credit">
+.hero .pic{flex-direction:column}
+.silascred{margin:10px 0 0;max-width:420px;text-align:center;font:600 12px/1.35 var(--body);color:#fff;opacity:.9}
+.silascred a{white-space:nowrap;color:inherit;text-decoration:underline;text-underline-offset:2px}
+@media (max-width:700px){.silascred{font-size:9.5px;margin-top:10px;line-height:1.25}}
+@media (min-width:701px) and (max-width:900px){.silascred{font-size:11px;line-height:1.3;min-height:2.6em;margin-top:34px}.hero .songbtn{bottom:46px!important}}
+</style>
 </head>
 <body>
 
@@ -1629,6 +1636,7 @@ input,textarea{cursor:text!important}
       </div>
       <div class="pic">
         <div class="photo silas"><video id="silasVid" src="video/silas.mp4" poster="video/silas.jpg" autoplay muted loop playsinline aria-label="Silas, a 10-week-old wolf pup, howling"></video><button type="button" class="silasbtn" id="silasBtn" aria-pressed="false"><span class="ic" aria-hidden="true">♪</span><span class="lb">Hear Silas</span></button><audio id="silasAud" src="audio/silas-howl.mp3" preload="none"></audio></div>
+        <p class="silascred">Ambassador wolf Silas from <a href="https://nywolf.org" target="_blank" rel="noopener">Wolf Conservation Center</a></p>
         <button type="button" class="songbtn" id="songBtn" aria-pressed="false"><span class="ic" aria-hidden="true">▶</span> <span class="lb">Play our song</span></button><audio id="songAud" src="audio/theme.mp3" preload="none"></audio>
 
       </div>
