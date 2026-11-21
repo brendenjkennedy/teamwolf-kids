@@ -3827,5 +3827,14 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
 .step .s-phone{display:none}
 @media (max-width:600px){.step .s-phone{display:inline}}
 </style>
+<style id="games-grid">
+/* games menu, tablet and desktop: two even rows of five, no sideways scroll (Nov 20) */
+@media (min-width:701px){
+  .gmenu{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px 8px;overflow:visible;-webkit-mask-image:none;mask-image:none}
+  .gm{min-width:0;flex:none;justify-content:flex-start;padding:10px 6px}
+  .gm b{display:block;line-height:1.15;text-wrap:balance}
+  .gm > span:last-child{line-height:1.15}
+}
+</style>
 </body>
 </html>
