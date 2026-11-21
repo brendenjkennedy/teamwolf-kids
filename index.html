@@ -2584,7 +2584,7 @@ window.addEventListener(&#x27;load&#x27;, reportHeight);
   <section class="torn-t">
     <div class="wrap">
       <div class="steps">
-        <div class="step rv"><span class="n">1</span><p>Fill in the boxes. Your letter writes itself on the right.</p></div>
+        <div class="step rv"><span class="n">1</span><p>Fill in the boxes. Your letter writes itself <span class="s-wide">on the right</span><span class="s-phone">below</span>.</p></div>
         <div class="step rv"><span class="n">2</span><p>Print it, sign it, and ask a grown-up to help you find your governor's address.</p></div>
         <div class="step rv"><span class="n">3</span><p>Stamp it and send it. You just spoke up for wolves!</p></div>
       </div>
@@ -2947,12 +2947,12 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
       go()},(min+Math.random()*(max-min))*(ch==='elk'?(.55+.45*W):1)*1000)})()}
   function start(){
     var AC=window.AudioContext||window.webkitAudioContext;if(!AC){sndL.textContent='Sound doesn’t work here';return}
-    ctx=new AC();master=ctx.createGain();master.connect(ctx.destination);sndL.textContent='Loading Yellowstone…';
+    try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}try{var unl=new Audio('data:audio/wav;base64,UklGRvQHAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YdAHAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==');unl.setAttribute('playsinline','');unl.play().catch(function(){})}catch(e){}ctx=new AC();try{ctx.resume()}catch(e){}try{var sb=ctx.createBufferSource();sb.buffer=ctx.createBuffer(1,1,22050);sb.connect(ctx.destination);sb.start(0)}catch(e){}master=ctx.createGain();master.connect(ctx.destination);sndL.textContent='Loading Yellowstone…';
     Promise.all(['wolves','birds','river','raven','elk'].map(function(n){return fetch('audio/'+n+'.mp3').then(function(r){if(!r.ok)throw 0;return r.arrayBuffer()}).then(function(b){return new Promise(function(res,rej){ctx.decodeAudioData(b,res,rej)})}).then(function(buf){bufs[n]=buf})}))
     .then(function(){['wolves','birds','river'].forEach(function(n){var s=ctx.createBufferSource(),g=ctx.createGain();s.buffer=bufs[n];s.loop=true;g.gain.value=0;
         if(n==='river'){riverLP=ctx.createBiquadFilter();riverLP.type='lowpass';riverLP.frequency.value=16000;s.connect(riverLP);riverLP.connect(g)}else s.connect(g);
         g.connect(master);s.start(0,Math.random()*bufs[n].duration*.5);gains[n]=g});
-      shot('raven',5,12);shot('elk',7,15);playing=true;sndB.setAttribute('aria-pressed','true');sndL.textContent='Sound on · tap to stop';render()})
+      shot('raven',5,12);shot('elk',7,15);if(ctx.state!=='running'){try{ctx.resume()}catch(e){}}playing=true;sndB.setAttribute('aria-pressed','true');sndL.textContent='Sound on · tap to stop';render()})
     .catch(function(){sndL.textContent='Couldn’t load the sound'})}
   var inView=true;
   function apply(){if(master)master.gain.setTargetAtTime(playing&&inView?1:0,ctx.currentTime,.4)}
@@ -2964,7 +2964,7 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
   });
   // like the main site: the sound fades out when you scroll past it (or leave the page) and fades back in when you return
   if('IntersectionObserver' in window) new IntersectionObserver(function(es){es.forEach(function(e){inView=e.isIntersecting;apply()})},{threshold:.05}).observe(ys);
-  document.addEventListener('visibilitychange',function(){inView=!document.hidden&&inView;if(!document.hidden){var r=ys.getBoundingClientRect();inView=r.bottom>0&&r.top<innerHeight&&ys.offsetParent!==null}apply()});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden&&ctx&&playing&&ctx.state!=='running'){try{ctx.resume()}catch(e){}}inView=!document.hidden&&inView;if(!document.hidden){var r=ys.getBoundingClientRect();inView=r.bottom>0&&r.top<innerHeight&&ys.offsetParent!==null}apply()});
   window.addEventListener('hashchange',function(){setTimeout(function(){inView=ys.offsetParent!==null&&ys.getBoundingClientRect().bottom>0&&ys.getBoundingClientRect().top<innerHeight;apply()},60)});
   render();
 })();
@@ -3796,5 +3796,34 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
   document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-gate]');if(!a)return;e.preventDefault();url=a.href;no.hidden=true;g.querySelector('#gMsg').textContent='You’re about to leave the Cub Hub for '+(a.getAttribute('data-gate-to')||'teamwolf.org, Team Wolf’s site for grown-ups')+'. Enter your birthday to continue.';g.classList.add('on');setTimeout(function(){g.querySelector('#gM').focus()},50)});
 })();
 </script>
+<style id="phone-polish">
+/* phone polish, Nov 20 */
+@media (max-width:700px){
+  .hero .songbtn{display:none!important}
+}
+@media (max-width:600px){
+  /* Listen to Yellowstone: line the animal names up in one column */
+  .meters .mt{align-items:flex-start;gap:12px}
+  .meters .mt b{flex:0 0 92px;margin:0;line-height:1.25}
+  /* Pack card and fill-in story: no tall empty box before you start */
+  .packcard.empty{min-height:0}
+  .packcard.empty p{padding-bottom:0}
+  .fistory{min-height:0}
+  .fistory.empty{padding:24px}
+  /* Write a letter steps: number beside the text */
+  .step{display:flex;align-items:center;gap:16px;padding:18px 18px}
+  .step .n{flex:0 0 42px;width:42px;height:42px;margin:0;font-size:20px}
+  .step .s-wide{display:none}
+  .step .s-phone{display:inline}
+  /* For grown-ups numbers: number beside the text */
+  .teach .tg-how div{display:flex;gap:14px;align-items:flex-start;padding:16px 18px}
+  .teach .tg-how b{flex:0 0 38px;line-height:1.05}
+  .teach .tg-how p{margin:0}
+  /* games menu: fade the right edge so it reads as a row you can swipe */
+  .gmenu{-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
+}
+.step .s-phone{display:none}
+@media (max-width:600px){.step .s-phone{display:inline}}
+</style>
 </body>
 </html>
