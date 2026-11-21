@@ -3847,15 +3847,17 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
 }
 </style>
 <style id="hero-phone-silas">
-/* phones (Nov 20): Silas sits beside the intro line, never on top of the headline or the words */
+/* phones (Nov 20): Silas stacks under the intro line, big and centered, above the buttons */
 @media (max-width:700px){
-  .hero .wrap{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"word word" "lead pic" "btns btns";column-gap:14px!important;row-gap:0!important;align-items:center}
+  .hero .wrap{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"word" "lead" "pic" "btns";row-gap:0!important;align-items:center}
   .hero .wrap > div:first-child{display:contents}
   .hero .wordmark{grid-area:word}
-  .hero .lead{grid-area:lead;margin:16px 0 20px!important}
-  .hero .btns{grid-area:btns}
-  .hero .pic{grid-area:pic;position:relative!important;top:auto!important;right:auto!important;left:auto!important;width:min(38vw,170px)!important;max-width:none!important;margin:0!important;justify-self:end;align-self:center}
-  .hero .silasbtn{font-size:11px;padding:6px 10px 6px 6px;white-space:nowrap}
+  .hero .lead{grid-area:lead;margin:16px 0 18px!important}
+  .hero .btns{grid-area:btns;margin-top:22px}
+  .hero .pic{grid-area:pic;position:relative!important;top:auto!important;right:auto!important;left:auto!important;width:min(78vw,330px)!important;max-width:none!important;margin:0 auto!important;justify-self:center;align-self:center}
+  .hero .silasbtn{font-size:12px;padding:7px 12px 7px 7px;white-space:nowrap;top:auto;bottom:9%}
+  .hero .silasbtn .ic{width:22px;height:22px;font-size:11px}
+  .silascred{font-size:11px!important}
 }
 </style>
 </body>
