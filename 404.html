@@ -1006,6 +1006,7 @@ input,textarea{cursor:text!important}
 .dots{padding:6px 0}
 
 .hero .photo.silas{position:relative}
+.hero .silasbox{position:relative;width:100%;display:flex;justify-content:center}
 .hero .photo.silas video{position:absolute;width:125%;height:125%;left:-3%;top:-4%;object-fit:cover;display:block;max-width:none}
 .silasbtn{position:absolute;left:50%;bottom:9%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:9px 15px 9px 9px;background:rgba(251,250,243,.94);color:var(--den);font:800 13px/1 var(--body);letter-spacing:.05em;text-transform:uppercase;box-shadow:0 3px 8px rgba(46,0,1,.3);white-space:nowrap}
 .silasbtn .ic{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:13px}
@@ -1635,7 +1636,7 @@ input,textarea{cursor:text!important}
         </div>
       </div>
       <div class="pic">
-        <div class="photo silas"><video id="silasVid" src="video/silas.mp4" poster="video/silas.jpg" autoplay muted loop playsinline aria-label="Silas, a 10-week-old wolf pup, howling"></video><button type="button" class="silasbtn" id="silasBtn" aria-pressed="false"><span class="ic" aria-hidden="true">♪</span><span class="lb">Hear Silas</span></button><audio id="silasAud" src="audio/silas-howl.mp3" preload="none"></audio></div>
+        <div class="silasbox"><div class="photo silas"><video id="silasVid" src="video/silas.mp4" poster="video/silas.jpg" autoplay muted loop playsinline aria-label="Silas, a 10-week-old wolf pup, howling"></video><audio id="silasAud" src="audio/silas-howl.mp3" preload="none"></audio></div><button type="button" class="silasbtn" id="silasBtn" aria-pressed="false"><span class="ic" aria-hidden="true">♪</span><span class="lb">Hear Silas</span></button></div>
         <p class="silascred">Ambassador wolf Silas from <a href="https://nywolf.org" target="_blank" rel="noopener">Wolf Conservation Center</a></p>
         <button type="button" class="songbtn" id="songBtn" aria-pressed="false"><span class="ic" aria-hidden="true">▶</span> <span class="lb">Play our song</span></button><audio id="songAud" src="audio/theme.mp3" preload="none"></audio>
 
@@ -3855,7 +3856,8 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
   .hero .lead{grid-area:lead;margin:16px 0 18px!important}
   .hero .btns{grid-area:btns;margin-top:22px}
   .hero .pic{grid-area:pic;position:relative!important;top:auto!important;right:auto!important;left:auto!important;width:min(78vw,330px)!important;max-width:none!important;margin:0 auto!important;justify-self:center;align-self:center}
-  .hero .silasbtn{font-size:12px;padding:7px 12px 7px 7px;white-space:nowrap;top:auto;bottom:9%}
+  .hero .silasbtn{font-size:12px;padding:7px 12px 7px 7px;white-space:nowrap;top:auto;bottom:-17px}
+  .hero .silascred{margin-top:28px!important}
   .hero .silasbtn .ic{width:22px;height:22px;font-size:11px}
   .silascred{font-size:11px!important}
 }
