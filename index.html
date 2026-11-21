@@ -3345,7 +3345,7 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
     var A=t.A,W=A.clientWidth,H=A.offsetHeight,T=t.T,vh=innerHeight,mob=W<760;
     var r=A.getBoundingClientRect(),st=vh+T*0.35,en=vh*0.5+T*0.45,sy=scrollY,bot=r.bottom+sy;
     var s0=Math.max(bot-st,Math.min(60,(st-en)*0.15)),s1=Math.max(bot-en,s0+(st-en)*0.6);
-    var P0=0.42,ly=r.bottom-T*0.55,p=reduce?1:(t.hero?clamp(P0+(1-P0)*clamp(sy/(vh*0.45))):clamp((sy-s0)/(s1-s0)));
+    var P0=0.42,ly=r.bottom-T*0.55,p=reduce?1:(t.hero&&!mob?clamp(P0+(1-P0)*clamp(sy/(vh*0.45))):clamp((sy-s0)/(s1-s0)));
     var mx=function(q){return t.lr?[W-q[0],q[1]]:q},M=function(a){return a.map(mx)};
     t.svg.setAttribute('width',W);t.svg.setAttribute('height',H);t.svg.style.top=-H+'px';
     if(p<=0){A.style.clipPath='';t.svg.style.display='none';t.ext.style.display=(r.bottom>vh)?'block':'none';return}
