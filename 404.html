@@ -1,10 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><base href="/"><script>window.CUB404=1</script>
+<head><script>window.CUB404=1</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/">
+<meta name="robots" content="noindex">
+<script>
+/* Real page addresses (teamwolf.kids/play/quiz/ rather than teamwolf.kids/#play/quiz) so Google can find each page.
+   The page code still thinks in routes like "#play/quiz": cubHash() gives the route for the address bar,
+   cubGo() moves to a route, and old # links are turned into real addresses on arrival. */
+(function(){
+  var V=['home','learn','videos','play','color','letter','help','parents'];
+  function isRoute(h){h=String(h||'').replace(/^#/,'');return h==='listen'||/^lesson-\d$/.test(h)||V.indexOf(h.split('/')[0])>-1}
+  function toPath(h){h=String(h||'').replace(/^#/,'');if(h===''||h==='home')return '/';if(h==='listen')return '/#listen';var m=h.match(/^lesson-(\d)$/);if(m)return '/learn/lesson-'+m[1]+'/';return '/'+h+'/'}
+  function hashOf(path,hash){var p=path.replace(/index\.html$/,'');if(p==='/'||p==='')return hash==='#listen'?'#listen':'';var m=p.match(/^\/learn\/lesson-(\d)\/?$/);if(m)return '#lesson-'+m[1];return '#'+p.replace(/^\/+|\/+$/g,'')}
+  if(!window.CUB404&&(location.pathname==='/'||location.pathname==='/index.html')&&location.hash&&location.hash!=='#listen'&&isRoute(location.hash))history.replaceState(null,'',toPath(location.hash));
+  window.cubHash=function(){return hashOf(location.pathname,location.hash)};
+  window.cubPath=toPath;
+  function fire(){var e;try{e=new HashChangeEvent('hashchange')}catch(x){e=document.createEvent('Event');e.initEvent('hashchange',false,false)}window.dispatchEvent(e)}
+  window.cubGo=function(h){var p=toPath(h);if(p===location.pathname+location.hash||(p==='/'&&location.pathname==='/'&&!location.hash))return;history.pushState(null,'',p);fire()};
+  window.addEventListener('popstate',fire);
+  document.addEventListener('click',function(e){
+    if(e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    var a=e.target.closest&&e.target.closest('a[href]');if(!a||(a.target&&a.target!=='_self')||a.hasAttribute('download'))return;
+    var h=a.getAttribute('href'),r=null;
+    if(h.charAt(0)==='#'){if(isRoute(h))r=h}
+    else if(h.charAt(0)==='/'&&h.charAt(1)!=='/'&&!/\.[a-z0-9]+(\?.*)?$/i.test(h)){var u=new URL(h,location.origin);var hh=hashOf(u.pathname,u.hash)||'#home';if(isRoute(hh))r=hh}
+    if(r===null)return;e.preventDefault();cubGo(r);
+  },true);
+  /* each page gets its own title, description and canonical address */
+  var L=['Meet the Wolf','The Pack Is a Family','Why Wolves Howl','What Wolves Eat','The Yellowstone Story','Wolves and People','Wolves Need Us'];
+  var T={
+    home:['Cub Hub · Team Wolf for Kids','The Cub Hub: wolf facts, videos, games, coloring pages and a letter kids can send to their governor. From Team Wolf, for kids ages 8 to 12.'],
+    learn:['Wolf Lessons for Kids · Cub Hub','Seven short wolf lessons for kids, with real wolf photos, tap-to-learn facts and badges to earn. From Team Wolf.'],
+    videos:['Wolf Videos and Wolf Cams for Kids · Cub Hub','Short wolf videos for kids, plus live wolf cams. From Team Wolf.'],
+    play:['Wolf Games for Kids · Cub Hub','Wolf trivia, a wolf crossword, raven tag, whose tracks, trail cam detective and more wolf games for kids.'],
+    color:['Wolf Coloring Pages for Kids · Cub Hub','Free printable wolf coloring pages for kids, some drawn by Team Wolf members.'],
+    letter:['Write to Your Governor for Wolves · Cub Hub','A letter kids can send to their governor about wolves, with a grown-up. From Team Wolf.'],
+    help:['How Kids Can Help Wolves · Cub Hub','Easy ways kids can help wolves and wildlife. From Team Wolf.'],
+    parents:['For Parents and Teachers · Cub Hub','Wolf books by age, a teacher’s guide to the wolf lessons, and the people behind the Cub Hub.'],
+    oops:['Page not found · Cub Hub','']
+  };
+  function meta(sel,attr,val){var el=document.querySelector(sel);if(el)el.setAttribute(attr,val)}
+  document.addEventListener('cubroute',function(e){
+    var v=e.detail.view,l=e.detail.lesson,t=T[v]||T.home,title=t[0],desc=t[1],canon=toPath(v==='home'||v==='oops'?'home':v);
+    if(v==='learn'&&l){title='Lesson '+l+': '+L[l-1]+' · Wolf Lessons · Cub Hub';canon='/learn/lesson-'+l+'/'}
+    document.title=title;if(desc)meta('meta[name="description"]','content',desc);
+    meta('link[rel="canonical"]','href','https://teamwolf.kids'+canon);meta('meta[property="og:url"]','content','https://teamwolf.kids'+canon);
+    meta('meta[property="og:title"]','content',title);
+  });
+})();
+</script>
 <title>Cub Hub · Team Wolf for Kids</title><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=4"><link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4">
 <meta name="description" content="The Cub Hub: wolf facts, videos, games, coloring pages and a letter kids can send to their governor. From Team Wolf, for kids ages 8 to 12.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://teamwolf.kids/">
+<meta property="og:title" content="Cub Hub · Team Wolf for Kids">
+<meta property="og:description" content="Wolf facts, videos, games and coloring pages for kids 8 to 12.">
+<meta property="og:image" content="https://teamwolf.kids/share-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Team Wolf Cub Hub logo beside Nikai the wolf as a pup, sitting in the grass">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
@@ -1598,19 +1655,19 @@ input,textarea{cursor:text!important}
 
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="#home" aria-label="Cub Hub home"><img src="a/1b9b1bf603.png" alt="Team Wolf Cub Hub"></a>
+    <a class="logo" href="/" aria-label="Cub Hub home"><img src="a/1b9b1bf603.png" alt="Team Wolf Cub Hub"></a>
     <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Main">
-      <div class="ni has"><a href="#learn"><span class="ic" style="--c:var(--green);--p:url(a/f49bb9dae6.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="5" ry="4.2"/><ellipse cx="5.2" cy="10" rx="2" ry="2.6"/><ellipse cx="9.4" cy="5.8" rx="2" ry="2.7"/><ellipse cx="14.6" cy="5.8" rx="2" ry="2.7"/><ellipse cx="18.8" cy="10" rx="2" ry="2.6"/></svg></span><span class="lb">The Rendezvous</span></a>
-        <div class="mega"><div class="wrap"><div class="mg-h"><b>The Rendezvous</b><p>Seven lessons. Earn a patch for each one.</p><a class="mg-all" href="#learn/badges">See Your Patches →</a><a class="mg-all" href="#learn/trackpack">Track the Pack →</a><a class="mg-all" href="#learn/wolfbirds">Story: Wolf-Birds →</a></div><div class="mg-tiles"><a class="mt" href="#lesson-1"><img src="a/92f4f7d2a2.webp" alt=""><span><b>Meet the Wolf</b><small>Lesson 1 · Wolf Spotter</small></span></a><a class="mt" href="#lesson-2"><img src="a/e83d03c219.webp" alt=""><span><b>The Pack Is a Family</b><small>Lesson 2 · Pack Member</small></span></a><a class="mt" href="#lesson-3"><img src="a/d3bd79448f.webp" alt=""><span><b>Why Wolves Howl</b><small>Lesson 3 · Head Howler</small></span></a><a class="mt" href="#lesson-4"><img src="a/04c3343e34.webp" alt=""><span><b>What Wolves Eat</b><small>Lesson 4 · Keystone Keeper</small></span></a><a class="mt" href="#lesson-5"><img src="a/d7b5809b36.webp" alt=""><span><b>The Yellowstone Story</b><small>Lesson 5 · Yellowstone Ranger</small></span></a><a class="mt" href="#lesson-6"><img src="a/4146cec538.webp" alt=""><span><b>Wolves and People</b><small>Lesson 6 · Myth Buster</small></span></a><a class="mt" href="#lesson-7"><img src="a/1227f72cfc.webp" alt=""><span><b>Wolves Need Us</b><small>Lesson 7 · Wolf Defender</small></span></a></div></div></div></div>
-      <div class="ni"><a href="#videos"><span class="ic" style="--c:var(--blue);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4.5v15l12-7.5z"/></svg></span><span class="lb">Videos</span></a></div>
-      <div class="ni has"><a href="#play"><span class="ic" style="--c:var(--red);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 7h11a4.5 4.5 0 0 1 4.3 5.8l-1.2 4.1a2.6 2.6 0 0 1-4.4 1L14.4 16H9.6l-1.8 1.9a2.6 2.6 0 0 1-4.4-1L2.2 12.8A4.5 4.5 0 0 1 6.5 7z"/><path d="M7.5 10v4M5.5 12h4" stroke="var(--c)" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="10.8" r="1.2" fill="var(--c)"/><circle cx="18" cy="13.2" r="1.2" fill="var(--c)"/></svg></span><span class="lb">Games</span></a>
-        <div class="mega"><div class="wrap"><div class="mg-h"><b>Games</b><p>Ten games, from trivia to jokes.</p><a class="mg-all" href="#play">All Games →</a></div><div class="mg-tiles g5"><a class="mt" href="#play/quiz"><span class="ic" style="--c:var(--sky);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><text x="12" y="16.6" text-anchor="middle" font-size="13" font-weight="900" fill="var(--c)" font-family="Arial">?</text></svg></span><span><b>Wolf trivia</b><small>Earn your Wolf Expert patch</small></span></a><a class="mt" href="#play/crossword"><span class="ic" style="--c:var(--green);--p:url(a/f49bb9dae6.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="var(--c)" stroke-width="1.6"/></svg></span><span><b>Wolf Crossword</b><small>With hints if you get stuck</small></span></a><a class="mt" href="#play/packgame"><span class="ic" style="--c:var(--burg);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><img src="a/6859e16969.webp" alt=""></span><span><b>Pack Role</b><small>What job would you have?</small></span></a><a class="mt" href="#play/howlAlong"><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><img src="a/2a4008ff2f.webp" alt=""></span><span><b>Howl-Along</b><small>Make a whole pack chorus</small></span></a><a class="mt" href="#play/buildpack"><span class="ic" style="--c:var(--blue);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><img src="a/73a2c92efe.webp" alt=""></span><span><b>Bring the Wolves Back</b><small>Watch a valley come alive</small></span></a><a class="mt" href="#play/fillin"><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M7 10h10M7 14h6" stroke="var(--c)" stroke-width="2" stroke-linecap="round"/></svg></span><span><b>Wolf Funny Fill-In</b><small>Make a silly wolf story</small></span></a><a class="mt" href="#play/tracks"><span class="ic" style="--c:var(--den);--p:none" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="5" ry="4.2"/><ellipse cx="5.2" cy="10" rx="2" ry="2.6"/><ellipse cx="9.4" cy="5.8" rx="2" ry="2.7"/><ellipse cx="14.6" cy="5.8" rx="2" ry="2.7"/><ellipse cx="18.8" cy="10" rx="2" ry="2.6"/></svg></span><span><b>Whose Tracks?</b><small>Be a track detective</small></span></a><a class="mt" href="#play/ravtag"><span class="ic" style="--c:var(--den);--p:none" aria-hidden="true"><img src="a/8dbdf92aaf.webp" alt=""></span><span><b>Raven Tag</b><small>Jump for the raven’s stick</small></span></a><a class="mt" href="#play/trailcam"><span class="ic" style="--c:var(--green);--p:url(a/f49bb9dae6.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><rect x="8" y="3.5" width="8" height="3.5" rx="1"/><circle cx="12" cy="12.5" r="4" fill="var(--c)"/><circle cx="12" cy="12.5" r="2.2"/></svg></span><span><b>Trail Cam Detective</b><small>Who got caught on camera?</small></span></a><a class="mt" href="#play/jokes"><span class="ic" style="--c:var(--red);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 13.5h9a4.5 4.5 0 0 1-9 0z" fill="var(--c)"/><path d="M7.5 9.5l2 1-2 1M16.5 9.5l-2 1 2 1" fill="none" stroke="var(--c)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Joke Generator</b><small>Jokes to tell your pack</small></span></a></div></div></div></div>
-      <div class="ni"><a href="#color"><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16.6 2.8l4.6 4.6L9.4 19.2l-4.6-4.6z"/><path d="M4.8 14.6l4.6 4.6L3 21z"/></svg></span><span class="lb">Coloring</span></a></div>
-      <div class="ni"><a href="#letter"><span class="ic" style="--c:var(--sky);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5" fill="none" stroke="var(--c)" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="lb">Write a Letter</span></a></div>
-      <div class="ni"><a href="#help"><span class="ic" style="--c:var(--burg);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-8.5-5.2-8.5-11.3C3.5 6.6 5.8 4.5 8.4 4.5c1.6 0 2.9.8 3.6 2 .7-1.2 2-2 3.6-2 2.6 0 4.9 2.1 4.9 5.2C20.5 15.8 12 21 12 21z"/></svg></span><span class="lb">Help Wolves</span></a></div>
-      <div class="ni has"><a class="grown" href="#parents"><span class="ic" style="--c:var(--den);--p:none" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8.5" cy="7.5" r="3.3"/><circle cx="16.5" cy="9" r="2.6"/><path d="M2.5 20c0-4 2.7-6.6 6-6.6s6 2.6 6 6.6z"/><path d="M14.2 14.4c.7-.5 1.5-.8 2.3-.8 2.8 0 5 2.2 5 6.4h-5.8"/></svg></span><span class="lb">For Grown-Ups</span></a>
-        <div class="mega mg-r"><div class="wrap"><div class="mg-list"><a href="#parents"><b>For Parents and Teachers</b><small>How to use the Cub Hub</small></a><a href="#parents/books"><b>Reading List</b><small>Wolf books by age</small></a><a href="#parents/teach"><b>Teacher’s Guide</b><small>Lessons, talk questions, printables</small></a><a href="#parents/team"><b>Who Is Team Wolf</b><small>The people behind the Cub Hub</small></a><a href="https://www.teamwolf.org" data-gate><b>Visit teamwolf.org ↗</b><small>Grown-ups only</small></a></div></div></div></div>
+      <div class="ni has"><a href="/learn/"><span class="ic" style="--c:var(--green);--p:url(a/f49bb9dae6.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="5" ry="4.2"/><ellipse cx="5.2" cy="10" rx="2" ry="2.6"/><ellipse cx="9.4" cy="5.8" rx="2" ry="2.7"/><ellipse cx="14.6" cy="5.8" rx="2" ry="2.7"/><ellipse cx="18.8" cy="10" rx="2" ry="2.6"/></svg></span><span class="lb">The Rendezvous</span></a>
+        <div class="mega"><div class="wrap"><div class="mg-h"><b>The Rendezvous</b><p>Seven lessons. Earn a patch for each one.</p><a class="mg-all" href="/learn/badges/">See Your Patches →</a><a class="mg-all" href="/learn/trackpack/">Track the Pack →</a><a class="mg-all" href="/learn/wolfbirds/">Story: Wolf-Birds →</a></div><div class="mg-tiles"><a class="mt" href="/learn/lesson-1/"><img src="a/92f4f7d2a2.webp" alt=""><span><b>Meet the Wolf</b><small>Lesson 1 · Wolf Spotter</small></span></a><a class="mt" href="/learn/lesson-2/"><img src="a/e83d03c219.webp" alt=""><span><b>The Pack Is a Family</b><small>Lesson 2 · Pack Member</small></span></a><a class="mt" href="/learn/lesson-3/"><img src="a/d3bd79448f.webp" alt=""><span><b>Why Wolves Howl</b><small>Lesson 3 · Head Howler</small></span></a><a class="mt" href="/learn/lesson-4/"><img src="a/04c3343e34.webp" alt=""><span><b>What Wolves Eat</b><small>Lesson 4 · Keystone Keeper</small></span></a><a class="mt" href="/learn/lesson-5/"><img src="a/d7b5809b36.webp" alt=""><span><b>The Yellowstone Story</b><small>Lesson 5 · Yellowstone Ranger</small></span></a><a class="mt" href="/learn/lesson-6/"><img src="a/4146cec538.webp" alt=""><span><b>Wolves and People</b><small>Lesson 6 · Myth Buster</small></span></a><a class="mt" href="/learn/lesson-7/"><img src="a/1227f72cfc.webp" alt=""><span><b>Wolves Need Us</b><small>Lesson 7 · Wolf Defender</small></span></a></div></div></div></div>
+      <div class="ni"><a href="/videos/"><span class="ic" style="--c:var(--blue);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4.5v15l12-7.5z"/></svg></span><span class="lb">Videos</span></a></div>
+      <div class="ni has"><a href="/play/"><span class="ic" style="--c:var(--red);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 7h11a4.5 4.5 0 0 1 4.3 5.8l-1.2 4.1a2.6 2.6 0 0 1-4.4 1L14.4 16H9.6l-1.8 1.9a2.6 2.6 0 0 1-4.4-1L2.2 12.8A4.5 4.5 0 0 1 6.5 7z"/><path d="M7.5 10v4M5.5 12h4" stroke="var(--c)" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="10.8" r="1.2" fill="var(--c)"/><circle cx="18" cy="13.2" r="1.2" fill="var(--c)"/></svg></span><span class="lb">Games</span></a>
+        <div class="mega"><div class="wrap"><div class="mg-h"><b>Games</b><p>Ten games, from trivia to jokes.</p><a class="mg-all" href="/play/">All Games →</a></div><div class="mg-tiles g5"><a class="mt" href="/play/quiz/"><span class="ic" style="--c:var(--sky);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><text x="12" y="16.6" text-anchor="middle" font-size="13" font-weight="900" fill="var(--c)" font-family="Arial">?</text></svg></span><span><b>Wolf trivia</b><small>Earn your Wolf Expert patch</small></span></a><a class="mt" href="/play/crossword/"><span class="ic" style="--c:var(--green);--p:url(a/f49bb9dae6.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="var(--c)" stroke-width="1.6"/></svg></span><span><b>Wolf Crossword</b><small>With hints if you get stuck</small></span></a><a class="mt" href="/play/packgame/"><span class="ic" style="--c:var(--burg);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><img src="a/6859e16969.webp" alt=""></span><span><b>Pack Role</b><small>What job would you have?</small></span></a><a class="mt" href="/play/howlAlong/"><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><img src="a/2a4008ff2f.webp" alt=""></span><span><b>Howl-Along</b><small>Make a whole pack chorus</small></span></a><a class="mt" href="/play/buildpack/"><span class="ic" style="--c:var(--blue);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><img src="a/73a2c92efe.webp" alt=""></span><span><b>Bring the Wolves Back</b><small>Watch a valley come alive</small></span></a><a class="mt" href="/play/fillin/"><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M7 10h10M7 14h6" stroke="var(--c)" stroke-width="2" stroke-linecap="round"/></svg></span><span><b>Wolf Funny Fill-In</b><small>Make a silly wolf story</small></span></a><a class="mt" href="/play/tracks/"><span class="ic" style="--c:var(--den);--p:none" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="5" ry="4.2"/><ellipse cx="5.2" cy="10" rx="2" ry="2.6"/><ellipse cx="9.4" cy="5.8" rx="2" ry="2.7"/><ellipse cx="14.6" cy="5.8" rx="2" ry="2.7"/><ellipse cx="18.8" cy="10" rx="2" ry="2.6"/></svg></span><span><b>Whose Tracks?</b><small>Be a track detective</small></span></a><a class="mt" href="/play/ravtag/"><span class="ic" style="--c:var(--den);--p:none" aria-hidden="true"><img src="a/8dbdf92aaf.webp" alt=""></span><span><b>Raven Tag</b><small>Jump for the raven’s stick</small></span></a><a class="mt" href="/play/trailcam/"><span class="ic" style="--c:var(--green);--p:url(a/f49bb9dae6.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><rect x="8" y="3.5" width="8" height="3.5" rx="1"/><circle cx="12" cy="12.5" r="4" fill="var(--c)"/><circle cx="12" cy="12.5" r="2.2"/></svg></span><span><b>Trail Cam Detective</b><small>Who got caught on camera?</small></span></a><a class="mt" href="/play/jokes/"><span class="ic" style="--c:var(--red);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 13.5h9a4.5 4.5 0 0 1-9 0z" fill="var(--c)"/><path d="M7.5 9.5l2 1-2 1M16.5 9.5l-2 1 2 1" fill="none" stroke="var(--c)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Joke Generator</b><small>Jokes to tell your pack</small></span></a></div></div></div></div>
+      <div class="ni"><a href="/color/"><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16.6 2.8l4.6 4.6L9.4 19.2l-4.6-4.6z"/><path d="M4.8 14.6l4.6 4.6L3 21z"/></svg></span><span class="lb">Coloring</span></a></div>
+      <div class="ni"><a href="/letter/"><span class="ic" style="--c:var(--sky);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5" fill="none" stroke="var(--c)" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="lb">Write a Letter</span></a></div>
+      <div class="ni"><a href="/help/"><span class="ic" style="--c:var(--burg);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-8.5-5.2-8.5-11.3C3.5 6.6 5.8 4.5 8.4 4.5c1.6 0 2.9.8 3.6 2 .7-1.2 2-2 3.6-2 2.6 0 4.9 2.1 4.9 5.2C20.5 15.8 12 21 12 21z"/></svg></span><span class="lb">Help Wolves</span></a></div>
+      <div class="ni has"><a class="grown" href="/parents/"><span class="ic" style="--c:var(--den);--p:none" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8.5" cy="7.5" r="3.3"/><circle cx="16.5" cy="9" r="2.6"/><path d="M2.5 20c0-4 2.7-6.6 6-6.6s6 2.6 6 6.6z"/><path d="M14.2 14.4c.7-.5 1.5-.8 2.3-.8 2.8 0 5 2.2 5 6.4h-5.8"/></svg></span><span class="lb">For Grown-Ups</span></a>
+        <div class="mega mg-r"><div class="wrap"><div class="mg-list"><a href="/parents/"><b>For Parents and Teachers</b><small>How to use the Cub Hub</small></a><a href="/parents/books/"><b>Reading List</b><small>Wolf books by age</small></a><a href="/parents/teach/"><b>Teacher’s Guide</b><small>Lessons, talk questions, printables</small></a><a href="/parents/team/"><b>Who Is Team Wolf</b><small>The people behind the Cub Hub</small></a><a href="https://www.teamwolf.org" data-gate><b>Visit teamwolf.org ↗</b><small>Grown-ups only</small></a></div></div></div></div>
     </nav>
   </div>
   <div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -1631,8 +1688,8 @@ input,textarea{cursor:text!important}
         </h1>
         <p class="lead">Your den for all things wolf. Watch, play, color, and send a letter that helps wolves for real.</p>
         <div class="btns">
-          <a class="btn gold" href="#learn">Start learning <span class="ar">→</span></a>
-          <a class="btn" href="#letter">Write a letter <span class="ar">→</span></a>
+          <a class="btn gold" href="/learn/">Start learning <span class="ar">→</span></a>
+          <a class="btn" href="/letter/">Write a letter <span class="ar">→</span></a>
         </div>
       </div>
       <div class="pic">
@@ -1663,12 +1720,12 @@ input,textarea{cursor:text!important}
       <span class="sub">What do you want to do?</span>
       <h2>Pick your <span class="c-r">adventure.</span></h2>
       <div class="tiles">
-        <a class="rv tile t-green t-half" href="#learn"><span class="tag2">Learn</span><h3>The Rendezvous</h3><p>Where wolf pups learn. Seven quick lessons on how wolves live. Earn a badge for each one, then become a Pack Leader.</p><span class="go">Start learning →</span><img class="em cutw" src="a/03c0bc4c4a.webp" alt=""></a>
-        <a class="rv tile t-sky t-half" href="#videos"><span class="tag2">Learn</span><h3>Wolf Wise Videos</h3><p>Three short videos on wolf history, the Big Bad Wolf myth, and living alongside wolves.</p><span class="go">Watch →</span><img class="em cutw" src="a/b71a2667e8.webp" alt=""></a>
-        <a class="rv tile t-red t-third" href="#play"><h3>Games</h3><p>The wolf quiz, a crossword, your role in the pack, and more.</p><span class="go">Let's play →</span><img class="em cutw" src="a/6859e16969.webp" alt=""></a>
-        <a class="rv tile t-gold t-third" href="#color"><h3>Coloring Pages</h3><p>Print them, color them, hang them on the fridge.</p><span class="go">Grab the crayons →</span></a>
-        <a class="rv tile t-kraft t-third" href="#letter"><h3>Write a Letter</h3><p>Ask your governor to protect wolves. Build your letter in a few taps.</p><span class="go">Start writing →</span></a>
-        <a class="rv tile t-den t-full" href="#parents"><h3>For Grown-Ups</h3><p>Parents and teachers: what the Cub Hub is and how to use it.</p><span class="go">Learn more →</span></a>
+        <a class="rv tile t-green t-half" href="/learn/"><span class="tag2">Learn</span><h3>The Rendezvous</h3><p>Where wolf pups learn. Seven quick lessons on how wolves live. Earn a badge for each one, then become a Pack Leader.</p><span class="go">Start learning →</span><img class="em cutw" src="a/03c0bc4c4a.webp" alt=""></a>
+        <a class="rv tile t-sky t-half" href="/videos/"><span class="tag2">Learn</span><h3>Wolf Wise Videos</h3><p>Three short videos on wolf history, the Big Bad Wolf myth, and living alongside wolves.</p><span class="go">Watch →</span><img class="em cutw" src="a/b71a2667e8.webp" alt=""></a>
+        <a class="rv tile t-red t-third" href="/play/"><h3>Games</h3><p>The wolf quiz, a crossword, your role in the pack, and more.</p><span class="go">Let's play →</span><img class="em cutw" src="a/6859e16969.webp" alt=""></a>
+        <a class="rv tile t-gold t-third" href="/color/"><h3>Coloring Pages</h3><p>Print them, color them, hang them on the fridge.</p><span class="go">Grab the crayons →</span></a>
+        <a class="rv tile t-kraft t-third" href="/letter/"><h3>Write a Letter</h3><p>Ask your governor to protect wolves. Build your letter in a few taps.</p><span class="go">Start writing →</span></a>
+        <a class="rv tile t-den t-full" href="/parents/"><h3>For Grown-Ups</h3><p>Parents and teachers: what the Cub Hub is and how to use it.</p><span class="go">Learn more →</span></a>
       </div>
     </div>
   </section>
@@ -1805,7 +1862,7 @@ input,textarea{cursor:text!important}
         <h1>The Rendezvous.</h1>
         <p class="lead">When wolf pups are big enough to leave their den, the pack moves them to a <b>rendezvous site</b>. It’s a safe, open meadow where the pups play, explore, and learn from the grown-ups while the rest of the pack goes hunting.</p>
         <p class="lead">This is yours. Seven quick lessons. Finish one to earn a badge. Earn all seven and pass the wolf quiz to become a Pack Leader.</p>
-        <a class="tlink" href="#parents/teach">Teaching a class? Read the teacher’s guide →</a>
+        <a class="tlink" href="/parents/teach/">Teaching a class? Read the teacher’s guide →</a>
       </div>
       <div class="rph"><img src="a/2ee4ad7056.jpg" alt="Four wolf pups sitting close together"></div>
     </div>
@@ -1893,7 +1950,7 @@ input,textarea{cursor:text!important}
   <section class="torn-t">
     <div class="wrap">
 
-      <nav class="gmenu" aria-label="Games"><a class="gm" href="#play/quiz"><span class="ic" style="--c:var(--sky);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><text x="12" y="16.6" text-anchor="middle" font-size="13" font-weight="900" fill="var(--c)" font-family="Arial">?</text></svg></span><span><b>Wolf trivia</b><small>Earn your Wolf Expert patch</small></span></a><a class="gm" href="#play/crossword"><span class="ic" style="--c:var(--green);--p:url(a/f49bb9dae6.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="var(--c)" stroke-width="1.6"/></svg></span><span><b>Wolf Crossword</b><small>With hints if you get stuck</small></span></a><a class="gm" href="#play/packgame"><span class="ic" style="--c:var(--burg);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><img src="a/6859e16969.webp" alt=""></span><span><b>Pack Role</b><small>What job would you have?</small></span></a><a class="gm" href="#play/howlAlong"><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><img src="a/2a4008ff2f.webp" alt=""></span><span><b>Howl-Along</b><small>Make a whole pack chorus</small></span></a><a class="gm" href="#play/buildpack"><span class="ic" style="--c:var(--blue);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><img src="a/73a2c92efe.webp" alt=""></span><span><b>Bring the Wolves Back</b><small>Watch a valley come alive</small></span></a><a class="gm" href="#play/fillin"><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M7 10h10M7 14h6" stroke="var(--c)" stroke-width="2" stroke-linecap="round"/></svg></span><span><b>Wolf Funny Fill-In</b><small>Make a silly wolf story</small></span></a><a class="gm" href="#play/tracks"><span class="ic" style="--c:var(--den);--p:none" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="5" ry="4.2"/><ellipse cx="5.2" cy="10" rx="2" ry="2.6"/><ellipse cx="9.4" cy="5.8" rx="2" ry="2.7"/><ellipse cx="14.6" cy="5.8" rx="2" ry="2.7"/><ellipse cx="18.8" cy="10" rx="2" ry="2.6"/></svg></span><span><b>Whose Tracks?</b><small>Be a track detective</small></span></a><a class="gm" href="#play/ravtag"><span class="ic" style="--c:var(--den);--p:none" aria-hidden="true"><img src="a/8dbdf92aaf.webp" alt=""></span><span><b>Raven Tag</b><small>Jump for the raven’s stick</small></span></a><a class="gm" href="#play/trailcam"><span class="ic" style="--c:var(--green);--p:url(a/f49bb9dae6.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><rect x="8" y="3.5" width="8" height="3.5" rx="1"/><circle cx="12" cy="12.5" r="4" fill="var(--c)"/><circle cx="12" cy="12.5" r="2.2"/></svg></span><span><b>Trail Cam Detective</b><small>Who got caught on camera?</small></span></a><a class="gm" href="#play/jokes"><span class="ic" style="--c:var(--red);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 13.5h9a4.5 4.5 0 0 1-9 0z" fill="var(--c)"/><path d="M7.5 9.5l2 1-2 1M16.5 9.5l-2 1 2 1" fill="none" stroke="var(--c)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Joke Generator</b><small>Jokes to tell your pack</small></span></a></nav>
+      <nav class="gmenu" aria-label="Games"><a class="gm" href="/play/quiz/"><span class="ic" style="--c:var(--sky);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><text x="12" y="16.6" text-anchor="middle" font-size="13" font-weight="900" fill="var(--c)" font-family="Arial">?</text></svg></span><span><b>Wolf trivia</b><small>Earn your Wolf Expert patch</small></span></a><a class="gm" href="/play/crossword/"><span class="ic" style="--c:var(--green);--p:url(a/f49bb9dae6.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="var(--c)" stroke-width="1.6"/></svg></span><span><b>Wolf Crossword</b><small>With hints if you get stuck</small></span></a><a class="gm" href="/play/packgame/"><span class="ic" style="--c:var(--burg);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><img src="a/6859e16969.webp" alt=""></span><span><b>Pack Role</b><small>What job would you have?</small></span></a><a class="gm" href="/play/howlAlong/"><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><img src="a/2a4008ff2f.webp" alt=""></span><span><b>Howl-Along</b><small>Make a whole pack chorus</small></span></a><a class="gm" href="/play/buildpack/"><span class="ic" style="--c:var(--blue);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><img src="a/73a2c92efe.webp" alt=""></span><span><b>Bring the Wolves Back</b><small>Watch a valley come alive</small></span></a><a class="gm" href="/play/fillin/"><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M7 10h10M7 14h6" stroke="var(--c)" stroke-width="2" stroke-linecap="round"/></svg></span><span><b>Wolf Funny Fill-In</b><small>Make a silly wolf story</small></span></a><a class="gm" href="/play/tracks/"><span class="ic" style="--c:var(--den);--p:none" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="5" ry="4.2"/><ellipse cx="5.2" cy="10" rx="2" ry="2.6"/><ellipse cx="9.4" cy="5.8" rx="2" ry="2.7"/><ellipse cx="14.6" cy="5.8" rx="2" ry="2.7"/><ellipse cx="18.8" cy="10" rx="2" ry="2.6"/></svg></span><span><b>Whose Tracks?</b><small>Be a track detective</small></span></a><a class="gm" href="/play/ravtag/"><span class="ic" style="--c:var(--den);--p:none" aria-hidden="true"><img src="a/8dbdf92aaf.webp" alt=""></span><span><b>Raven Tag</b><small>Jump for the raven’s stick</small></span></a><a class="gm" href="/play/trailcam/"><span class="ic" style="--c:var(--green);--p:url(a/f49bb9dae6.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><rect x="8" y="3.5" width="8" height="3.5" rx="1"/><circle cx="12" cy="12.5" r="4" fill="var(--c)"/><circle cx="12" cy="12.5" r="2.2"/></svg></span><span><b>Trail Cam Detective</b><small>Who got caught on camera?</small></span></a><a class="gm" href="/play/jokes/"><span class="ic" style="--c:var(--red);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 13.5h9a4.5 4.5 0 0 1-9 0z" fill="var(--c)"/><path d="M7.5 9.5l2 1-2 1M16.5 9.5l-2 1 2 1" fill="none" stroke="var(--c)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Joke Generator</b><small>Jokes to tell your pack</small></span></a></nav>
       <div class="rv game trivia-wrap" id="quiz" style="grid-template-columns:1fr">
         <div>
           <span class="sub">Game 1</span>
@@ -2514,7 +2571,7 @@ window.addEventListener(&#x27;load&#x27;, reportHeight);
 
       <div class="rv game rtgame" id="ravtag">
         <div class="trhead"><span class="sub">Game 9</span><h2>Raven <span class="c-r">tag.</span></h2>
-        <p style="margin-top:12px">In Yellowstone, ravens really play with wolf pups. They fly over with a stick and tease the pups into jumping for it. You’re the pup! Jump and grab the stick as many times as you can in 30 seconds.</p><p><a class="rtbook" href="#learn/wolfbirds">Read the true story first: Wolf-Birds →</a></p></div>
+        <p style="margin-top:12px">In Yellowstone, ravens really play with wolf pups. They fly over with a stick and tease the pups into jumping for it. You’re the pup! Jump and grab the stick as many times as you can in 30 seconds.</p><p><a class="rtbook" href="/learn/wolfbirds/">Read the true story first: Wolf-Birds →</a></p></div>
         <div class="rtstage" id="rtStage" tabindex="0" aria-label="Raven tag game. Press space or tap to jump.">
           <i class="hill h1 g"></i><i class="hill h2 g"></i><i class="sun"></i>
           <div class="rtrav" id="rtRav"><img src="a/8dbdf92aaf.webp" alt=""><i class="rtstick" id="rtStick"></i></div>
@@ -2560,11 +2617,11 @@ window.addEventListener(&#x27;load&#x27;, reportHeight);
       <div class="hgrown"><b>For grown-ups: dogs and traps</b><p>In Montana, legal trapping can happen on public land from November into April, depending on the animal. Montana Fish, Wildlife &amp; Parks says most dogs caught in traps were running off-leash or out of sight. Its advice: keep your dog on a leash or always in sight, and learn how to open a trap before you need to.</p></div>
       <h2 class="hg">At home and <span class="c-s">school.</span></h2>
       <div class="hcards">
-        <label class="hcard"><input type="checkbox" data-h="fact"><span class="hbox" aria-hidden="true">✓</span><span class="ic" style="--c:var(--sky);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></span><span class="ht"><b>Tell a friend a true wolf fact</b><span class="hp">Lots of people still believe the big-bad-wolf stories. Pick a fact from the Cub Hub and share it.</span><a class="hl" href="#learn/factpack">Get a fact card →</a></span></label>
+        <label class="hcard"><input type="checkbox" data-h="fact"><span class="hbox" aria-hidden="true">✓</span><span class="ic" style="--c:var(--sky);--p:url(a/36d2cd7011.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></span><span class="ht"><b>Tell a friend a true wolf fact</b><span class="hp">Lots of people still believe the big-bad-wolf stories. Pick a fact from the Cub Hub and share it.</span><a class="hl" href="/learn/factpack/">Get a fact card →</a></span></label>
         <label class="hcard"><input type="checkbox" data-h="plant"><span class="hbox" aria-hidden="true">✓</span><span class="ic" style="--c:var(--green);--p:url(a/f49bb9dae6.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 21v-8"  stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><path d="M11 13C6 13 3.5 9.5 3.5 5 8 5 11 8 11 13z"/><path d="M12 11c0-4.5 3-7.5 8.5-7.5 0 5-3 7.5-8.5 7.5z"/></svg></span><span class="ht"><b>Plant something native</b><span class="hp">With a grown-up, plant flowers, bushes, or trees that grow wild where you live. They feed bees, butterflies, and birds.</span></span></label>
-        <label class="hcard"><input type="checkbox" data-h="camera"><span class="hbox" aria-hidden="true">✓</span><span class="ic" style="--c:var(--burg);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="13" rx="2.5"/><rect x="8" y="4" width="8" height="4" rx="1"/><circle cx="12" cy="13.5" r="4" fill="var(--c)"/><circle cx="12" cy="13.5" r="2.2"/></svg></span><span class="ht"><b>Be a trail cam detective</b><span class="hp">Scientists use hidden cameras to see who lives in a forest. Try spotting animals in real trail-camera photos.</span><a class="hl" href="#play/trailcam">Play Trail Cam Detective →</a></span></label>
+        <label class="hcard"><input type="checkbox" data-h="camera"><span class="hbox" aria-hidden="true">✓</span><span class="ic" style="--c:var(--burg);--p:url(a/366a16b39b.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="13" rx="2.5"/><rect x="8" y="4" width="8" height="4" rx="1"/><circle cx="12" cy="13.5" r="4" fill="var(--c)"/><circle cx="12" cy="13.5" r="2.2"/></svg></span><span class="ht"><b>Be a trail cam detective</b><span class="hp">Scientists use hidden cameras to see who lives in a forest. Try spotting animals in real trail-camera photos.</span><a class="hl" href="/play/trailcam/">Play Trail Cam Detective →</a></span></label>
       </div>
-      <label class="hcard hbig"><input type="checkbox" data-h="letter"><span class="hbox" aria-hidden="true">✓</span><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5" fill="none" stroke="var(--c)" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="ht"><b>The big one: write to your governor</b><span class="hp">Governors and state leaders help decide what happens to wolves. A real letter from a kid gets noticed.</span><a class="btn gold" href="#letter">Write my letter <span class="ar">→</span></a></span></label>
+      <label class="hcard hbig"><input type="checkbox" data-h="letter"><span class="hbox" aria-hidden="true">✓</span><span class="ic" style="--c:var(--gold);--p:url(a/b7241c2abd.jpg)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5" fill="none" stroke="var(--c)" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="ht"><b>The big one: write to your governor</b><span class="hp">Governors and state leaders help decide what happens to wolves. A real letter from a kid gets noticed.</span><a class="btn gold" href="/letter/">Write my letter <span class="ar">→</span></a></span></label>
     </div>
   </section>
 </div>
@@ -2655,12 +2712,13 @@ window.addEventListener(&#x27;load&#x27;, reportHeight);
         <p style="margin-top:18px">Team Wolf is a pack of advocates, scientists, and conservationists on a mission to ensure the long-term protection and recovery of Gray Wolves. We built the Cub Hub for kids ages 8 to 12: everything here is checked against the science and written so a kid can follow it.</p>
         <p><b>Classrooms, camps, and after-school clubs are welcome.</b> Use any page, print any coloring sheet, and run the quiz with your group.</p>
         <span class="sub" style="margin-top:28px">Age level</span>
-        <p>Made for ages 8 to 12, about grades 3 to 7. Lessons use short sentences and real facts. Younger kids do great with a grown-up reading along. See the <a href="#parents/books">reading list by age</a> and the <a href="#parents/teach">teacher’s guide</a>.</p>
+        <p>Made for ages 8 to 12, about grades 3 to 7. Lessons use short sentences and real facts. Younger kids do great with a grown-up reading along. See the <a href="/parents/books/">reading list by age</a> and the <a href="/parents/teach/">teacher’s guide</a>.</p>
         <span class="sub" style="margin-top:28px">Your kid's privacy</span>
         <ul>
           <li>The Cub Hub never asks kids for an email, phone number, or address.</li>
           <li>The pack role game runs on the page. Names aren't saved or sent anywhere.</li>
           <li>The governor letter is something your kid writes and mails, with your help.</li>
+          <li>We count visits with Google Analytics to see which pages kids use, so we can make the Cub Hub better. That's all it's used for: no ads, no profiles, nothing that identifies your kid.</li>
         </ul>
       </div>
       <div class="side">
@@ -2702,8 +2760,8 @@ window.addEventListener(&#x27;load&#x27;, reportHeight);
       <ol class="tg-steps"><li>Open the lesson on the big screen and read the facts out loud together.</li><li>Do the activity as a group. Let kids take turns tapping.</li><li>Ask the “Talk about it” question below before the check question.</li><li>Answer the check question with a class vote. Getting it wrong is part of learning.</li><li>Print the patch certificate for the class, or one per kid.</li></ol>
       <table class="tgtable"><thead><tr><th>Lesson and patch</th><th>Kids learn</th><th>Activity</th><th>Talk about it</th></tr></thead><tbody><tr><td><span class="tl"><img src="a/92f4f7d2a2.webp" alt=""><span><b>1. Meet the wolf</b><small>Wolf Spotter</small></span></span></td><td>Wolf bodies and senses, and that every dog comes from wolves.</td><td>Explore a wolf: tap the nose, ears, paws, and coat.</td><td><i>“Which wolf sense would you most want to have? Why?”</i></td></tr><tr><td><span class="tl"><img src="a/e83d03c219.webp" alt=""><span><b>2. The pack is a family</b><small>Pack Member</small></span></span></td><td>A pack is a family, and how pups grow up.</td><td>Meet the family: tap each wolf to learn its job.</td><td><i>“How is a wolf pack like your family?”</i></td></tr><tr><td><span class="tl"><img src="a/d3bd79448f.webp" alt=""><span><b>3. Why wolves howl</b><small>Head Howler</small></span></span></td><td>Why wolves howl, and the howl-at-the-moon myth.</td><td>Hear a real Yellowstone howl.</td><td><i>“What would your family’s howl say?”</i></td></tr><tr><td><span class="tl"><img src="a/04c3343e34.webp" alt=""><span><b>4. What wolves eat</b><small>Keystone Keeper</small></span></span></td><td>Where wolves fit in the food web, and who eats their leftovers.</td><td>On the menu? Sort foods a wolf would and wouldn’t eat.</td><td><i>“Who else gets to eat when a wolf eats?”</i></td></tr><tr><td><span class="tl"><img src="a/d7b5809b36.webp" alt=""><span><b>5. The Yellowstone story</b><small>Yellowstone Ranger</small></span></span></td><td>Wolves disappeared from Yellowstone, came back in 1995, and changed the park.</td><td>Yellowstone, then and now: a three-step timeline.</td><td><i>“What changed when the wolves came home?”</i></td></tr><tr><td><span class="tl"><img src="a/4146cec538.webp" alt=""><span><b>6. Wolves and people</b><small>Myth Buster</small></span></span></td><td>Wolves in Native and world stories, and where the big-bad-wolf idea came from.</td><td>Myth or fact? Sort true statements from old stories.</td><td><i>“Where did you first hear about wolves? Was it true?”</i></td></tr><tr><td><span class="tl"><img src="a/1227f72cfc.webp" alt=""><span><b>7. Wolves need us</b><small>Wolf Defender</small></span></span></td><td>Where wolves live today, and what kids can do to help.</td><td>Three ways to help.</td><td><i>“What’s one thing our class could do for wolves?”</i></td></tr></tbody></table>
       <div class="tg-cols">
-        <div class="box"><h3>Pair it with</h3><ul><li><a href="#learn/trackpack">Track the Pack</a>: a map of where wolves lived, nearly vanished, and live now.</li><li><a href="#learn/factpack">Fact Pack</a>: 21 fact cards to print, cut out, and trade.</li><li><a href="#play">Games</a>: trivia, crossword with an answer key, Bring the Wolves Back, and Whose Tracks.</li><li><a href="#letter">Write a letter</a>: a real writing assignment that goes to the governor.</li><li><a href="#help">Help Wolves and Wildlife</a>: a 10-step checklist kids can do at home.</li></ul></div>
-        <div class="box"><h3>Things to print</h3><ul><li>Patch and Pack Leader certificates</li><li>The Fact Pack</li><li>The wolf crossword and answer key</li><li>Bring the Wolves Back cut-and-paste page</li><li><a href="#color">Coloring pages</a>, including ones drawn by Team Wolf members</li></ul><p style="margin:14px 0 0"><button type="button" class="btn" id="tgPrint">Print this guide <span class="ar">⎙</span></button></p></div>
+        <div class="box"><h3>Pair it with</h3><ul><li><a href="/learn/trackpack/">Track the Pack</a>: a map of where wolves lived, nearly vanished, and live now.</li><li><a href="/learn/factpack/">Fact Pack</a>: 21 fact cards to print, cut out, and trade.</li><li><a href="/play/">Games</a>: trivia, crossword with an answer key, Bring the Wolves Back, and Whose Tracks.</li><li><a href="/letter/">Write a letter</a>: a real writing assignment that goes to the governor.</li><li><a href="/help/">Help Wolves and Wildlife</a>: a 10-step checklist kids can do at home.</li></ul></div>
+        <div class="box"><h3>Things to print</h3><ul><li>Patch and Pack Leader certificates</li><li>The Fact Pack</li><li>The wolf crossword and answer key</li><li>Bring the Wolves Back cut-and-paste page</li><li><a href="/color/">Coloring pages</a>, including ones drawn by Team Wolf members</li></ul><p style="margin:14px 0 0"><button type="button" class="btn" id="tgPrint">Print this guide <span class="ar">⎙</span></button></p></div>
       </div>
     </div>
   </section>
@@ -2748,7 +2806,7 @@ window.addEventListener(&#x27;load&#x27;, reportHeight);
         <p>This page wandered off. Even wolves lose the trail sometimes. When that happens, they howl, and the pack howls back so they can find their way home.</p>
         <button type="button" class="btn gold" id="oHowl">Howl for your pack <span class="ar">♪</span></button>
         <p class="omsg" id="oMsg" aria-live="polite">Pick a way home:</p>
-        <div class="olinks"><a class="btn" href="#home">Back to the den <span class="ar">→</span></a><a class="btn ghost" href="#play">Play a game</a><a class="btn ghost" href="#learn">Learn about wolves</a></div>
+        <div class="olinks"><a class="btn" href="/">Back to the den <span class="ar">→</span></a><a class="btn ghost" href="/play/">Play a game</a><a class="btn ghost" href="/learn/">Learn about wolves</a></div>
       </div>
     </div>
   </section>
@@ -2761,23 +2819,23 @@ window.addEventListener(&#x27;load&#x27;, reportHeight);
     <div>
       <img src="a/1b9b1bf603.png" alt="Team Wolf Cub Hub">
       <p style="max-width:360px;opacity:.9">The Cub Hub is Team Wolf's site for kids ages 8 to 12. Real wolf facts, made for young advocates.</p>
-      <a class="prog" href="#parents/team">Cub Hub is a program of Team Wolf →</a>
+      <a class="prog" href="/parents/team/">Cub Hub is a program of Team Wolf →</a>
     </div>
     <div>
       <h4>Explore</h4>
-      <a href="#learn">The Rendezvous</a>
-      <a href="#videos">Wolf Wise Videos</a>
-      <a href="#play">Games</a>
-      <a href="#color">Coloring Pages</a>
-      <a href="#letter">Write a Letter</a>
-      <a href="#help">Help Wolves and Wildlife</a>
+      <a href="/learn/">The Rendezvous</a>
+      <a href="/videos/">Wolf Wise Videos</a>
+      <a href="/play/">Games</a>
+      <a href="/color/">Coloring Pages</a>
+      <a href="/letter/">Write a Letter</a>
+      <a href="/help/">Help Wolves and Wildlife</a>
     </div>
     <div>
       <h4>Grown-ups</h4>
-      <a href="#parents">For Parents and Teachers</a>
-      <a href="#parents/books">Reading List</a>
-      <a href="#parents/teach">Teacher’s Guide</a>
-      <a href="#parents/team">Who Is Team Wolf</a>
+      <a href="/parents/">For Parents and Teachers</a>
+      <a href="/parents/books/">Reading List</a>
+      <a href="/parents/teach/">Teacher’s Guide</a>
+      <a href="/parents/team/">Who Is Team Wolf</a>
       <a href="https://www.teamwolf.org" data-gate>teamwolf.org ↗</a>
       <a href="mailto:info@teamwolf.org">info@teamwolf.org</a>
     </div>
@@ -2793,11 +2851,11 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
   /* ---------- routing ---------- */
   var views=['home','learn','videos','play','color','letter','help','parents','oops'];
   function route(){
-    var h=(location.hash||(window.CUB404?'#oops':'#home')).slice(1),les=null,sub=null; if(h.indexOf('/')>0){sub=h.split('/')[1];h=h.split('/')[0]} if(/^lesson-\d$/.test(h)){les=+h.slice(7);h='learn'} if(h==='listen')h='home'; if(h==='')h='home';if(views.indexOf(h)<0) h='oops';
+    var h=(cubHash()||(window.CUB404?'#oops':'#home')).slice(1),les=null,sub=null; if(h.indexOf('/')>0){sub=h.split('/')[1];h=h.split('/')[0]} if(/^lesson-\d$/.test(h)){les=+h.slice(7);h='learn'} if(h==='listen')h='home'; if(h==='')h='home';if(views.indexOf(h)<0) h='oops';
     views.forEach(function(v){document.getElementById('v-'+v).classList.toggle('on',v===h)});
-    document.querySelectorAll('.nav .ni>a').forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+h)});
+    document.querySelectorAll('.nav .ni>a').forEach(function(a){a.classList.toggle('on',a.getAttribute('href')===cubPath(h))});
     document.getElementById('nav').classList.remove('open');
-    var go=location.hash==='#listen'?document.getElementById('listen'):(sub?document.getElementById(sub):null); if(document.activeElement&&document.activeElement.closest&&document.activeElement.closest('.mega'))document.activeElement.blur();
+    var go=cubHash()==='#listen'?document.getElementById('listen'):(sub?document.getElementById(sub):null); if(document.activeElement&&document.activeElement.closest&&document.activeElement.closest('.mega'))document.activeElement.blur();
     window.scrollTo({top:0,left:0,behavior:'instant'}); if(!go) toTop(); if(go) setTimeout(function(){var y=go.getBoundingClientRect().top+scrollY-110;window.scrollTo({top:y,behavior:'smooth'})},120);
     document.dispatchEvent(new CustomEvent('cubroute',{detail:{view:h,lesson:les}}));
   }
@@ -3192,8 +3250,8 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
     if(all)document.getElementById('fullBtn').onclick=function(){cert(null,true)};
     [].slice.call(document.querySelectorAll('#badges .bdg')).forEach(function(el,i){var o=L.concat(EXPERT)[i];if(got[o.id]){el.classList.add('canprint');el.setAttribute('role','button');el.tabIndex=0;el.title='See this certificate';el.onclick=function(){cert(o,false)}}});
     document.getElementById('lessonList').innerHTML=L.map(function(o){
-      return '<li class="crawl"><a href="#lesson-'+o.id+'" class="lcard"><span class="lph"><img src="'+PH[o.ph]+'" alt="" style="object-position:'+o.pos+'"></span><span class="lbt" style="background:'+bg(o)+';color:'+(o.dark?'var(--den)':'#fff')+'"><span class="n">Lesson '+o.id+'</span><h3>'+o.t+'</h3><span class="st'+(got[o.id]?' done':'')+'">'+(got[o.id]?'Badge earned ✓':'Start →')+'</span></span>'+(o.bonus?'<span class="btag'+(got['s'+o.id]?' got':'')+'">'+(got['s'+o.id]?'★ Gold star earned':'★ Bonus round inside')+'</span>':'')+'</a></li>'}).join('')+
-      '<li class="crawl"><a href="#play" class="lcard final"><span class="lbt"><span class="n">Final test</span><h3>Become a Wolf Expert</h3><span class="st">Take the quiz →</span></span></a></li>';
+      return '<li class="crawl"><a href="/learn/lesson-'+o.id+'/" class="lcard"><span class="lph"><img src="'+PH[o.ph]+'" alt="" style="object-position:'+o.pos+'"></span><span class="lbt" style="background:'+bg(o)+';color:'+(o.dark?'var(--den)':'#fff')+'"><span class="n">Lesson '+o.id+'</span><h3>'+o.t+'</h3><span class="st'+(got[o.id]?' done':'')+'">'+(got[o.id]?'Badge earned ✓':'Start →')+'</span></span>'+(o.bonus?'<span class="btag'+(got['s'+o.id]?' got':'')+'">'+(got['s'+o.id]?'★ Gold star earned':'★ Bonus round inside')+'</span>':'')+'</a></li>'}).join('')+
+      '<li class="crawl"><a href="/play/" class="lcard final"><span class="lbt"><span class="n">Final test</span><h3>Become a Wolf Expert</h3><span class="st">Take the quiz →</span></span></a></li>';
     crawlIn();
   }
   var cur=null,step=0;
@@ -3212,12 +3270,12 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
     } else if(step===o.f.length+2){
       var nx=L[o.id];
       h+='<div class="sc quiz"><span class="sub">Badge question</span><p class="q">'+o.q[0]+'</p><div class="opts">'+o.q[1].map(function(x,i){return '<button data-i="'+i+'">'+x+'</button>'}).join('')+'</div><p class="hint" aria-live="polite"></p>'+
-        '<div class="won" aria-live="polite">'+badge({id:o.id,b:o.b,c:o.c,p:o.p,w:o.w},false).replace(' locked','')+'<div><h3>You earned the '+o.b+' badge!</h3><p>'+(!nx?'Now take the quiz to become a Wolf Expert.':'Nice work. Ready for the next one?')+'</p><div class="btns">'+(nx?'<a class="btn green" href="#lesson-'+nx.id+'">Next lesson <span class="ar">→</span></a>':'<a class="btn gold" href="#play">Take the quiz <span class="ar">→</span></a><a class="btn" style="background:var(--red);color:#fff" href="#letter">Write a letter <span class="ar">→</span></a>')+'<a class="btn ghost" href="#learn">My badges</a></div></div></div>'+
+        '<div class="won" aria-live="polite">'+badge({id:o.id,b:o.b,c:o.c,p:o.p,w:o.w},false).replace(' locked','')+'<div><h3>You earned the '+o.b+' badge!</h3><p>'+(!nx?'Now take the quiz to become a Wolf Expert.':'Nice work. Ready for the next one?')+'</p><div class="btns">'+(nx?'<a class="btn green" href="/learn/lesson-'+nx.id+'/">Next lesson <span class="ar">→</span></a>':'<a class="btn gold" href="/play/">Take the quiz <span class="ar">→</span></a><a class="btn" style="background:var(--red);color:#fff" href="/letter/">Write a letter <span class="ar">→</span></a>')+'<a class="btn ghost" href="/learn/">My badges</a></div></div></div>'+
         (o.bonus?'<button class="bonusgo"><span class="bk">★ Bonus round</span><b>For Advanced wolf experts</b><span class="bt">'+o.bonus.length+' harder fact'+(o.bonus.length>1?'s':'')+' for older pups. Want to see '+(o.bonus.length>1?'them':'it')+'?</span><span class="ar">→</span></button>':'')+'<div class="snav"><button class="sback">← Back to the facts</button><span></span></div></div>';
     } else if(step-(o.f.length+3)>=o.bonus.length){
       var nx3=L[o.id];
       h+='<div class="sc quiz bquiz"><span class="bk">★ Bonus question</span><p class="q">'+o.bq[0]+'</p><div class="opts">'+o.bq[1].map(function(x,i){return '<button data-i="'+i+'">'+x+'</button>'}).join('')+'</div><p class="hint" aria-live="polite"></p>'+
-        '<div class="won" aria-live="polite">'+badge({id:o.id,b:o.b,c:o.c,p:o.p,w:o.w},false).replace(' locked','')+'<div><h3>Gold star!</h3><p>You aced the bonus round. Your '+o.b+' badge has a gold star now.</p><div class="btns">'+(nx3?'<a class="btn green" href="#lesson-'+nx3.id+'">Next lesson <span class="ar">→</span></a>':'<a class="btn gold" href="#play">Take the quiz <span class="ar">→</span></a>')+'<a class="btn ghost" href="#learn">My badges</a></div></div></div>'+
+        '<div class="won" aria-live="polite">'+badge({id:o.id,b:o.b,c:o.c,p:o.p,w:o.w},false).replace(' locked','')+'<div><h3>Gold star!</h3><p>You aced the bonus round. Your '+o.b+' badge has a gold star now.</p><div class="btns">'+(nx3?'<a class="btn green" href="/learn/lesson-'+nx3.id+'/">Next lesson <span class="ar">→</span></a>':'<a class="btn gold" href="/play/">Take the quiz <span class="ar">→</span></a>')+'<a class="btn ghost" href="/learn/">My badges</a></div></div></div>'+
         '<div class="snav"><button class="sback">← Back to the bonus facts</button><span></span></div></div>';
     } else {
       var bi=step-(o.f.length+3),nx2=L[o.id],last=bi===o.bonus.length-1;
@@ -3248,7 +3306,7 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
   var cameBack=false;
   function go(n){cameBack=n<step;var Q=cur.f.length+2,max=Q+(cur.bonus&&got[cur.id]?cur.bonus.length+1:0);step=Math.max(0,Math.min(max,n));render();var t=box.getBoundingClientRect().top+scrollY-150;if(scrollY>t)scrollTo({top:t,behavior:'smooth'})}
   function wire(o){
-    box.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){location.hash=b.dataset.go}});
+    box.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){cubGo(b.dataset.go)}});
     box.querySelectorAll('.dots [data-jump]').forEach(function(d){d.onclick=function(){go(+d.dataset.jump)}});
     var nx=box.querySelector('.snext'),bk=box.querySelector('.sback');if(nx)nx.onclick=function(){go(step+1)};if(bk)bk.onclick=function(){go(step-1)};
     var chips=[].slice.call(box.querySelectorAll('.act .chip')),rv=box.querySelector('.reveal');
@@ -3293,7 +3351,7 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
   }
   window.addEventListener('message',function(e){var d=e.data||{};if(d.cubhub==='quiz'&&d.pct>=.8&&!got[8]){got[8]=1;save();drawHub(8);confetti()}});
   document.addEventListener('cubroute',function(e){var d=e.detail;if(d.view==='learn')open(d.lesson)});
-  drawHub();var m=location.hash.match(/^#lesson-(\d)$/);if(m)open(+m[1]);
+  drawHub();var m=cubHash().match(/^#lesson-(\d)$/);if(m)open(+m[1]);
 })();
 </script>
 <script>
@@ -3344,7 +3402,7 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
     var A=t.A,W=A.clientWidth,H=A.offsetHeight,T=t.T,vh=innerHeight,mob=W<760;
     var r=A.getBoundingClientRect(),st=vh+T*0.35,en=vh*0.5+T*0.45,sy=scrollY,bot=r.bottom+sy;
     var s0=Math.max(bot-st,Math.min(60,(st-en)*0.15)),s1=Math.max(bot-en,s0+(st-en)*0.6);
-    var P0=0.42,ly=r.bottom-T*0.55,p=reduce?1:(t.hero?clamp(P0+(1-P0)*clamp(sy/(vh*0.45))):clamp((sy-s0)/(s1-s0)));
+    var P0=0.42,ly=r.bottom-T*0.55,p=reduce?1:(t.hero&&!mob?clamp(P0+(1-P0)*clamp(sy/(vh*0.45))):clamp((sy-s0)/(s1-s0)));
     var mx=function(q){return t.lr?[W-q[0],q[1]]:q},M=function(a){return a.map(mx)};
     t.svg.setAttribute('width',W);t.svg.setAttribute('height',H);t.svg.style.top=-H+'px';
     if(p<=0){A.style.clipPath='';t.svg.style.display='none';t.ext.style.display=(r.bottom>vh)?'block':'none';return}
@@ -3429,7 +3487,7 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
     o.innerHTML='<div class="lb-paper" style="transform:none;box-shadow:none;max-width:680px;margin:40px auto">'+$('lbPaper').innerHTML+'</div>';
     document.body.classList.add('printing');window.print();setTimeout(function(){document.body.classList.remove('printing')},500)});
   // clear everything when the kid leaves the page
-  window.addEventListener('hashchange',function(){if(location.hash!=='#letter'){f.reset&&f.reset();why=[];[].slice.call(document.querySelectorAll('#lbWhy .chip.on')).forEach(function(c){c.classList.remove('on')});render()}});
+  window.addEventListener('hashchange',function(){if(cubHash()!=='#letter'){f.reset&&f.reset();why=[];[].slice.call(document.querySelectorAll('#lbWhy .chip.on')).forEach(function(c){c.classList.remove('on')});render()}});
   render();
 })();
 </script>
@@ -3723,7 +3781,7 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
     dots.innerHTML=WB.map(function(){return '<i></i>'}).join('');
     function txt(i){var p=WB[i],first=p.p.charAt(0);
       if(i===0)return '<div class="hcov"><div class="hcin"><span class="pgn">A true story</span><h3>Wolf-<br>Birds</h3><p>'+p.p+'</p><img class="hcw" src="a/73a2c92efe.webp" alt=""><img class="hcr fly" src="a/8dbdf92aaf.webp" alt=""></div></div>';
-      return '<div class="txt"><span class="pgn">Page '+i+' of '+(WB.length-1)+'</span><h3>'+p.h+'</h3><p><span class="cap">'+first+'</span>'+p.p.slice(1)+'</p>'+(p.cr?'<small class="pcr">'+p.cr+'</small>':'')+(p.end?'<div class="pgend"><a class="btn gold" href="#play/ravtag">Play Raven Tag →</a><a class="btn ghost" href="#lesson-4">Lesson: What wolves eat</a></div>':'')+'</div>'}
+      return '<div class="txt"><span class="pgn">Page '+i+' of '+(WB.length-1)+'</span><h3>'+p.h+'</h3><p><span class="cap">'+first+'</span>'+p.p.slice(1)+'</p>'+(p.cr?'<small class="pcr">'+p.cr+'</small>':'')+(p.end?'<div class="pgend"><a class="btn gold" href="/play/ravtag/">Play Raven Tag →</a><a class="btn ghost" href="/learn/lesson-4/">Lesson: What wolves eat</a></div>':'')+'</div>'}
     function ui(){[].forEach.call(dots.children,function(d,i){d.classList.toggle('on',i===wi)});pv.disabled=wi===0;nx2.disabled=wi===WB.length-1;nx2.innerHTML=wi===0?'Open the book →':wi===WB.length-1?'The end':'Turn the page →'}
     function show(i){L.innerHTML=WB[i].sc;R.innerHTML=txt(i);bk.classList.toggle('closed',i===0);ui()}
     function turn(dir,go){if(busy&&!go)return;var ni=wi+dir;if(ni<0||ni>=WB.length)return;busy=true;
@@ -3773,7 +3831,7 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
       requestAnimationFrame(loop)}
     function start(){size();score=0;sc.textContent='Sticks: 0';px=tx=.3;face=1;py=vy=0;rx=.6;rdir=-1;phase=0;cool=0;last=0;msg.hidden=true;run=true;t0=performance.now();st.focus({preventScroll:true});requestAnimationFrame(loop)}
     function end(){run=false;tm.textContent='0';var nb=score>best;if(nb){best=score;try{localStorage.setItem('cubhub-ravtag',best)}catch(e){}}
-      msg.innerHTML='<b>'+score+' stick'+(score===1?'':'s')+'!</b><span>'+(nb&&score>0?'New best! ':'Best: '+best+'. ')+'Playing like this helps real wolf pups get strong and quick.</span><button type="button" class="btn gold" id="rtGo">Play again</button><a class="rtbook" href="#learn/wolfbirds">Read the true story: Wolf-Birds →</a>';msg.hidden=false;document.getElementById('rtGo').onclick=start}
+      msg.innerHTML='<b>'+score+' stick'+(score===1?'':'s')+'!</b><span>'+(nb&&score>0?'New best! ':'Best: '+best+'. ')+'Playing like this helps real wolf pups get strong and quick.</span><button type="button" class="btn gold" id="rtGo">Play again</button><a class="rtbook" href="/learn/wolfbirds/">Read the true story: Wolf-Birds →</a>';msg.hidden=false;document.getElementById('rtGo').onclick=start}
     document.getElementById('rtGo').onclick=start;
     window.addEventListener('resize',size);size();
     rav.style.transform='translate('+(.55*W)+'px,'+(.2*H)+'px)';pup.style.transform='translate('+(.3*W)+'px,0)';

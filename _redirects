@@ -1,8 +1,23 @@
-# Old teamwolf.kids pages → the matching section of the new Cub Hub
-/letter-writing               /#letter      301
-/wolf-wise-videos             /#videos      301
-/parents                      /#parents     301
-/coloring-pages-and-puzzles   /#color       301
-/quiz                         /#play/quiz   301
+# Old teamwolf.kids pages → the matching page of the new Cub Hub
+/letter-writing               /letter/      301
+/wolf-wise-videos             /videos/      301
+/parents                      /parents/     301
+/coloring-pages-and-puzzles   /color/       301
+/quiz                         /play/quiz/   301
 # Old coloring-page PDF links
-/_files/*                     /#color       301
+/_files/*                     /color/       301
+
+# Every Cub Hub page is the one homepage file; the page code shows the right section for the address
+/learn         /index.html   200
+/videos        /index.html   200
+/play          /index.html   200
+/color         /index.html   200
+/letter        /index.html   200
+/help          /index.html   200
+/learn/*       /index.html   200
+/videos/*      /index.html   200
+/play/*        /index.html   200
+/color/*       /index.html   200
+/letter/*      /index.html   200
+/help/*        /index.html   200
+/parents/*     /index.html   200
