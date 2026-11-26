@@ -2856,7 +2856,7 @@ function toTop(){var t=document.querySelector('header')||document.body;try{t.scr
     document.querySelectorAll('.nav .ni>a').forEach(function(a){a.classList.toggle('on',a.getAttribute('href')===cubPath(h))});
     document.getElementById('nav').classList.remove('open');
     var go=cubHash()==='#listen'?document.getElementById('listen'):(sub?document.getElementById(sub):null); if(document.activeElement&&document.activeElement.closest&&document.activeElement.closest('.mega'))document.activeElement.blur();
-    window.scrollTo({top:0,left:0,behavior:'instant'}); if(!go) toTop(); if(go) setTimeout(function(){var y=go.getBoundingClientRect().top+scrollY-110;window.scrollTo({top:y,behavior:'smooth'})},120);
+    window.scrollTo({top:0,left:0,behavior:'instant'}); if(!go) toTop(); if(go){var jump=function(b){var tp=document.querySelector('.top'),d=go.getBoundingClientRect().top-((tp?tp.getBoundingClientRect().height:94)+16);if(Math.abs(d)>8)window.scrollTo({top:scrollY+d,behavior:b})};setTimeout(function(){jump('smooth')},120);setTimeout(function(){jump('smooth')},900);setTimeout(function(){jump('auto')},1800)}
     document.dispatchEvent(new CustomEvent('cubroute',{detail:{view:h,lesson:les}}));
   }
   window.addEventListener('hashchange',route); route();
