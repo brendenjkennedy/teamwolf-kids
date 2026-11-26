@@ -1,23 +1,17 @@
 # Old teamwolf.kids pages → the matching page of the new Cub Hub
 /letter-writing               /letter/      301
 /wolf-wise-videos             /videos/      301
-/parents                      /parents/     301
 /coloring-pages-and-puzzles   /color/       301
 /quiz                         /play/quiz/   301
 # Old coloring-page PDF links
 /_files/*                     /color/       301
 
-# Every Cub Hub page is the one homepage file; the page code shows the right section for the address
-/learn         /index.html   200
-/videos        /index.html   200
-/play          /index.html   200
-/color         /index.html   200
-/letter        /index.html   200
-/help          /index.html   200
-/learn/*       /index.html   200
-/videos/*      /index.html   200
-/play/*        /index.html   200
-/color/*       /index.html   200
-/letter/*      /index.html   200
-/help/*        /index.html   200
-/parents/*     /index.html   200
+# Every Cub Hub page has its own file, written by build.js on publish (see netlify.toml).
+# An unknown address inside a section (e.g. /play/something-old/) shows that section.
+/learn/*      /learn/index.html   200
+/videos/*     /videos/index.html   200
+/play/*       /play/index.html   200
+/color/*      /color/index.html   200
+/letter/*     /letter/index.html   200
+/help/*       /help/index.html   200
+/parents/*    /parents/index.html   200

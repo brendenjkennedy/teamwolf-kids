@@ -1,0 +1,5 @@
+# The Cub Hub is one page file. On every publish, build.js writes a copy of it for each page address
+# (with that page's title, description and preview details) before Netlify serves the site.
+[build]
+  publish = "."
+  command = "node build.js"

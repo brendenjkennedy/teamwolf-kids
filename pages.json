@@ -1,0 +1,258 @@
+{
+ "pages": {
+  "home": {
+   "title": "Cub Hub · Team Wolf for Kids",
+   "desc": "The Cub Hub: wolf facts, videos, games, coloring pages and a letter kids can send to their governor. From Team Wolf, for kids ages 8 to 12.",
+   "name": "Cub Hub"
+  },
+  "learn": {
+   "title": "Wolf Lessons for Kids · The Rendezvous · Cub Hub",
+   "desc": "Seven short wolf lessons for kids ages 8 to 12, with real wolf photos, tap-to-learn facts and a badge for every lesson. Free, from Team Wolf.",
+   "name": "The Rendezvous"
+  },
+  "learn/lesson-1": {
+   "title": "Lesson 1: Meet the Wolf · Wolf Lessons for Kids · Cub Hub",
+   "desc": "Gray Wolves are the biggest wild members of the dog family. Here’s what makes them amazing. A free wolf lesson for kids ages 8 to 12, with a Wolf Spotter badge to earn.",
+   "name": "Lesson 1: Meet the Wolf"
+  },
+  "learn/lesson-2": {
+   "title": "Lesson 2: The Pack Is a Family · Wolf Lessons for Kids · Cub Hub",
+   "desc": "A wolf pack isn’t a gang. It’s a family that lives, travels, and raises pups together. A free wolf lesson for kids ages 8 to 12, with a Pack Member badge to earn.",
+   "name": "Lesson 2: The Pack Is a Family"
+  },
+  "learn/lesson-3": {
+   "title": "Lesson 3: Why Wolves Howl · Wolf Lessons for Kids · Cub Hub",
+   "desc": "A howl is how wolves talk across long distances. Every pack has its own howl. A free wolf lesson for kids ages 8 to 12, with a Head Howler badge to earn.",
+   "name": "Lesson 3: Why Wolves Howl"
+  },
+  "learn/lesson-4": {
+   "title": "Lesson 4: What Wolves Eat · Wolf Lessons for Kids · Cub Hub",
+   "desc": "Wolves are carnivores, which means they eat meat. They’re a big part of the food web. A free wolf lesson for kids ages 8 to 12, with a Keystone Keeper badge to earn.",
+   "name": "Lesson 4: What Wolves Eat"
+  },
+  "learn/lesson-5": {
+   "title": "Lesson 5: The Yellowstone Story · Wolf Lessons for Kids · Cub Hub",
+   "desc": "When wolves came home to Yellowstone, the whole park changed. A free wolf lesson for kids ages 8 to 12, with a Yellowstone Ranger badge to earn.",
+   "name": "Lesson 5: The Yellowstone Story"
+  },
+  "learn/lesson-6": {
+   "title": "Lesson 6: Wolves and People · Wolf Lessons for Kids · Cub Hub",
+   "desc": "People have told stories about wolves for thousands of years. Some got wolves right. Some got them very wrong. A free wolf lesson for kids ages 8 to 12, with a Myth Buster badge to earn.",
+   "name": "Lesson 6: Wolves and People"
+  },
+  "learn/lesson-7": {
+   "title": "Lesson 7: Wolves Need Us · Wolf Lessons for Kids · Cub Hub",
+   "desc": "Wolves are still in trouble. The good news? Kids like you can help. A free wolf lesson for kids ages 8 to 12, with a Wolf Defender badge to earn.",
+   "name": "Lesson 7: Wolves Need Us"
+  },
+  "learn/badges": {
+   "title": "Wolf Lesson Badges · Cub Hub",
+   "desc": "Earn a badge for each of the seven wolf lessons in the Rendezvous, plus a Wolf Expert badge for acing the wolf trivia.",
+   "name": "Badges"
+  },
+  "learn/trackpack": {
+   "title": "Track the Pack: Where Wolves Lived and Live Now · Cub Hub",
+   "desc": "Slide through time to see where wolves lived long ago, when they almost disappeared, and where they live today.",
+   "name": "Track the Pack"
+  },
+  "learn/wolfbirds": {
+   "title": "Wolf-Birds: A True Story About Wolves and Ravens · Cub Hub",
+   "desc": "A true picture story for kids about how ravens and wolves live, eat and play together in Yellowstone.",
+   "name": "Wolf-Birds"
+  },
+  "learn/factpack": {
+   "title": "Wolf Fact Cards for Kids: 21 Printable Cards · Cub Hub",
+   "desc": "21 wolf fact cards kids can flip, share, or print to cut out and trade.",
+   "name": "Fact Pack"
+  },
+  "videos": {
+   "title": "Wolf Videos for Kids · Cub Hub",
+   "desc": "Three short wolf videos made for kids: the history of wolves, the myth of the Big Bad Wolf, and living alongside wolves. Plus live wolf cams.",
+   "name": "Videos"
+  },
+  "play": {
+   "title": "Wolf Games for Kids · Cub Hub",
+   "desc": "Free wolf games for kids: wolf trivia, a wolf crossword, Howl-Along, Whose Tracks?, Trail Cam Detective, Raven Tag, a funny fill-in and a joke generator.",
+   "name": "Games"
+  },
+  "play/quiz": {
+   "title": "Wolf Trivia for Kids · Cub Hub",
+   "desc": "Wolf trivia for kids at three levels, from Beginner to Wolf Expert. Every answer comes with a real wolf fact.",
+   "name": "Wolf Trivia for Kids"
+  },
+  "play/crossword": {
+   "title": "Wolf Crossword for Kids · Cub Hub",
+   "desc": "A wolf crossword puzzle for kids, with hints. Every answer is a wolf fact you can find on the Cub Hub. Play online or print it.",
+   "name": "Wolf Crossword for Kids"
+  },
+  "play/packgame": {
+   "title": "What's Your Wolf Pack Role? · Cub Hub",
+   "desc": "Type your first name to find out which job you'd have in a wolf pack, and learn how a wolf family works together.",
+   "name": "What's Your Wolf Pack Role?"
+  },
+  "play/howlAlong": {
+   "title": "Howl-Along: Make a Wolf Chorus · Cub Hub",
+   "desc": "Tap wolves to hear real wolf howls and build a whole pack chorus.",
+   "name": "Howl-Along: Make a Wolf Chorus"
+  },
+  "play/buildpack": {
+   "title": "Bring the Wolves Back to Yellowstone · Cub Hub",
+   "desc": "A kids game: add wolves, willows, beavers, songbirds and ravens in the right order to bring a Yellowstone valley back to life.",
+   "name": "Bring the Wolves Back to Yellowstone"
+  },
+  "play/fillin": {
+   "title": "Wolf Funny Fill-in · Cub Hub",
+   "desc": "Fill in the blanks to make a silly wolf story. A word game for kids.",
+   "name": "Wolf Funny Fill-in"
+  },
+  "play/tracks": {
+   "title": "Whose Tracks? Animal Track Matching Game · Cub Hub",
+   "desc": "Match real animal track photos to the animals that made them, the way wildlife scientists do.",
+   "name": "Whose Tracks? Animal Track Matching Game"
+  },
+  "play/trailcam": {
+   "title": "Trail Cam Detective · Cub Hub",
+   "desc": "Watch real trail-camera videos and guess which animal got caught on camera.",
+   "name": "Trail Cam Detective"
+  },
+  "play/ravtag": {
+   "title": "Raven Tag · Cub Hub",
+   "desc": "Play the pup: jump for the stick the way wolf pups play with ravens in Yellowstone.",
+   "name": "Raven Tag"
+  },
+  "play/jokes": {
+   "title": "Wolf Joke Generator · Cub Hub",
+   "desc": "Wolf jokes for kids to tell their pack.",
+   "name": "Wolf Joke Generator"
+  },
+  "color": {
+   "title": "Free Wolf Coloring Pages for Kids · Cub Hub",
+   "desc": "Free printable wolf coloring pages for kids, including pages drawn by Team Wolf members. Pick a page, print it and color.",
+   "name": "Coloring"
+  },
+  "letter": {
+   "title": "Write a Letter to Your Governor About Wolves · Cub Hub",
+   "desc": "Kids can write a letter to their governor about wolves: fill in the boxes, print it, sign it, and send it with a grown-up.",
+   "name": "Write a Letter"
+  },
+  "help": {
+   "title": "How Kids Can Help Wolves and Wildlife · Cub Hub",
+   "desc": "Ten easy ways kids can help wolves and wild animals, with a checklist to tick off.",
+   "name": "Help Wolves"
+  },
+  "parents": {
+   "title": "For Parents and Teachers · Cub Hub",
+   "desc": "What the Cub Hub is and how to use it with kids: wolf books by age, a teacher’s guide to the wolf lessons, and the team behind it.",
+   "name": "For Grown-Ups"
+  },
+  "parents/books": {
+   "title": "Wolf Books for Kids, by Age · Cub Hub",
+   "desc": "A reading list of wolf books for kids and families, each with an age level.",
+   "name": "Wolf Books by Age"
+  },
+  "parents/teach": {
+   "title": "Wolf Lessons Teacher’s Guide · Cub Hub",
+   "desc": "A teacher’s guide to the Rendezvous: seven 10-minute wolf lessons for ages 8 to 12 that work on a classroom projector or one device per kid.",
+   "name": "Teacher’s Guide"
+  },
+  "parents/team": {
+   "title": "About Team Wolf and the Cub Hub",
+   "desc": "Team Wolf is a coalition of wildlife advocates, outdoor people, educators and scientists working to keep Gray Wolves a permanent part of the American wild. The Cub Hub is its program for kids.",
+   "name": "The Pack Behind the Cub Hub"
+  }
+ },
+ "lessons": [
+  {
+   "id": 1,
+   "t": "Meet the Wolf",
+   "b": "Wolf Spotter",
+   "intro": "Gray Wolves are the biggest wild members of the dog family. Here’s what makes them amazing.",
+   "f": [
+    "Every dog on Earth, from Chihuahuas to Great Danes, comes from ancient wolves.",
+    "A wolf’s sense of smell is about 100 times stronger than yours.",
+    "A grown wolf is 3 to 5 feet long, not counting its tail.",
+    "Gray Wolves aren’t only gray. They can be black, white, tan, or a mix.",
+    "Wolf pups are born with blue eyes. They turn gold as the pups grow up.",
+    "Two kinds of wolves live in the United States today: the Gray Wolf and the Red Wolf. Red Wolves are critically endangered."
+   ]
+  },
+  {
+   "id": 2,
+   "t": "The Pack Is a Family",
+   "b": "Pack Member",
+   "intro": "A wolf pack isn’t a gang. It’s a family that lives, travels, and raises pups together.",
+   "f": [
+    "A pack is usually 7 or 8 wolves: a mom, a dad, and their kids.",
+    "Pups are born in the spring, about 5 at a time.",
+    "Newborn pups can’t see or hear yet, and they weigh about 1 pound.",
+    "Pups play tag, hide-and-seek, and wrestle. Playing teaches them how to hunt and get along.",
+    "Young wolves stay with their family for at least 2 years. Then some leave to start packs of their own."
+   ]
+  },
+  {
+   "id": 3,
+   "t": "Why Wolves Howl",
+   "b": "Head Howler",
+   "intro": "A howl is how wolves talk across long distances. Every pack has its own howl.",
+   "f": [
+    "Wolves howl to find each other when the pack is spread out.",
+    "A howl tells other packs, “This is our home. Stay away.”",
+    "Packs often howl together before they head out to hunt.",
+    "Wolves also whimper, bark, growl, and yelp, a lot like dogs do.",
+    "Wolves don’t howl at the moon. But they do howl more when the moon is full and bright."
+   ]
+  },
+  {
+   "id": 4,
+   "t": "What Wolves Eat",
+   "b": "Keystone Keeper",
+   "intro": "Wolves are carnivores, which means they eat meat. They’re a big part of the food web.",
+   "f": [
+    "In Yellowstone, wolves mostly eat elk. They also eat deer, moose, bison, and beavers.",
+    "A hungry wolf can eat up to 20 pounds of meat in one meal.",
+    "Wolves often catch animals that are old, sick, or weak, which helps keep the herds healthy.",
+    "Ravens share wolves’ leftovers all winter, and the two even play together.",
+    "Leftovers also feed eagles, bears, and lots of other animals."
+   ]
+  },
+  {
+   "id": 5,
+   "t": "The Yellowstone Story",
+   "b": "Yellowstone Ranger",
+   "intro": "When wolves came home to Yellowstone, the whole park changed.",
+   "f": [
+    "By 1926, people had killed every wolf in Yellowstone.",
+    "For about 70 years, there were no wolves. Elk hung around the rivers and ate the young trees.",
+    "In 1995, wolves were brought from Canada and set free in Yellowstone.",
+    "Wolves are a keystone species. That means a whole ecosystem leans on them, like a stone arch leans on its keystone. Take wolves out and things fall out of balance.",
+    "When wolves came back, trees grew back, beavers and songbirds returned, and the rivers changed.",
+    "Today about 100 wolves live in Yellowstone."
+   ]
+  },
+  {
+   "id": 6,
+   "t": "Wolves and People",
+   "b": "Myth Buster",
+   "intro": "People have told stories about wolves for thousands of years. Some got wolves right. Some got them very wrong.",
+   "f": [
+    "In an old Roman story, a she-wolf took care of two baby brothers, Romulus and Remus. Romulus grew up to found the city of Rome.",
+    "Other Plains tribes called the Pawnee “the Wolf People,” because Pawnee scouts moved as quietly as wolves.",
+    "The Mohegan people take their name from a word meaning “wolf.” They first lived in what is now upstate New York, then settled in Connecticut.",
+    "The Ojibwe people call the wolf Ma’iingan. They teach that what happens to wolves happens to people too.",
+    "Stories like Little Red Riding Hood made wolves look like villains. Real wolves are shy and usually stay far away from people."
+   ]
+  },
+  {
+   "id": 7,
+   "t": "Wolves Need Us",
+   "b": "Wolf Defender",
+   "intro": "Wolves are still in trouble. The good news? Kids like you can help.",
+   "f": [
+    "About 8,000 Gray Wolves live in the lower 48 states today, in ten states.",
+    "Wolves now live on only about 10% of the land they used to call home.",
+    "In Alaska, Idaho, Montana, and Wyoming, wolves aren’t protected from hunting. People there are allowed to hunt them for sport.",
+    "Wolves can’t write letters. You can. Every voice counts."
+   ]
+  }
+ ]
+}

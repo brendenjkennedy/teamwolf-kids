@@ -45,9 +45,11 @@
   document.addEventListener('cubroute',function(e){
     var v=e.detail.view,l=e.detail.lesson,t=T[v]||T.home,title=t[0],desc=t[1],canon=toPath(v==='home'||v==='oops'?'home':v);
     if(v==='learn'&&l){title='Lesson '+l+': '+L[l-1]+' · Wolf Lessons · Cub Hub';canon='/learn/lesson-'+l+'/'}
-    document.title=title;if(desc)meta('meta[name="description"]','content',desc);
-    meta('link[rel="canonical"]','href','https://teamwolf.kids'+canon);meta('meta[property="og:url"]','content','https://teamwolf.kids'+canon);
-    meta('meta[property="og:title"]','content',title);
+    var PP=window.CUB_PAGES,hh=cubHash().slice(1),mm=hh.match(/^lesson-(\d)$/),key=mm?'learn/lesson-'+mm[1]:(hh===''||hh==='listen'?'home':hh),pe=PP&&v!=='oops'&&(PP[key]||PP[v]);
+    if(pe){title=pe[0];desc=pe[1];canon=pe[2].replace('https://teamwolf.kids','')}
+    document.title=title;if(desc){meta('meta[name="description"]','content',desc);meta('meta[property="og:description"]','content',desc);meta('meta[name="twitter:description"]','content',desc)}
+    meta('link[rel="canonical"]','href','https://teamwolf.kids'+canon);meta('meta[property="og:url"]','content','https://teamwolf.kids'+(key==='home'?'/':'/'+(mm?'learn/lesson-'+mm[1]:key)+'/'));
+    meta('meta[property="og:title"]','content',title);meta('meta[name="twitter:title"]','content',title);
   });
 })();
 </script>
